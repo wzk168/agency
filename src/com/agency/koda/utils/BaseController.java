@@ -1,0 +1,176 @@
+package com.agency.koda.utils;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Random;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import ch.ethz.ssh2.Connection;
+import ch.ethz.ssh2.SCPClient;
+
+import com.agency.koda.model.UserInfo;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+/**
+ * 公共controller
+ * 
+ * @author Waco
+ * 
+ */
+public class BaseController {
+	public boolean judge;
+	public int result = 0;
+	public int pageSize = 15; // 初始化分页显示条数
+	/** gson对象含时间类型的年月日时分秒GsonBuilder */
+	public Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss")
+			.create();
+	/** gson对象 **/
+	public Gson gson1 = new Gson();// new一个Gson对象
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	/**
+	 * get the httpSession
+	 * 
+	 * @param request
+	 * @return
+	 */
+	public HttpSession getSession(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		return session;
+	}
+
+	/**
+	 * 获取session里的用户信息
+	 * 
+	 * @param request
+	 * @return
+	 */
+	public UserInfo getUserFromSession(HttpServletRequest request) {
+		UserInfo userOfSession = (UserInfo) request.getSession().getAttribute(
+				"userInfo");
+		return userOfSession;
+	}
+
+	/**
+	 * write out the message
+	 * 
+	 * @param response
+	 * @param object
+	 */
+	public void writeMsg(HttpServletResponse response, Object object) {
+		try {
+			PrintWriter out = null;
+			response.setCharacterEncoding("utf-8");
+			out = response.getWriter();
+			out.write("" + object + "");
+			out.flush();
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	// 文件上传的方法
+	public String uploadImg(String[] str) {
+		Connection con = null;
+		String mgs = "";
+		if (str != null && str.length > 0) {
+			con = new Connection("192.168.0.128", 22);// 网址路径，端口号
+			// 连接
+			try {
+				con.connect();
+				// 远程服务器的用户名密码
+				boolean isAuthed = con
+						.authenticateWithPassword("root", "admin");
+				if (isAuthed == true) {
+					// 建立SCP客户端
+					SCPClient scpClient = con.createSCPClient();
+					// 服务器端的文件下载到本地的目录下
+					// scpClient.get("/pic/1.png", "F:/");
+					scpClient.put(str, "/pic/");// /pic/为图片文件夹
+					// 将本地文件上传到服务器端的目录下
+					// scpClient.put("F:/3.png", "/pic/");
+				} else {
+					mgs = "不能打开连接，可能是账号密码错误请检查";
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				con.close();// 关闭链接
+			}
+
+		}
+		return mgs;
+	}
+
+	// 单个文件上传
+	public String uploadImg(String str) {
+		Connection con = null;
+		String mgs = "";
+		if (str != null && !str.equals("")) {
+			// con= new Connection("121.46.2.200", 22);//网址路径，端口号
+			con = new Connection("192.168.0.128", 22);// 网址路径，端口号
+			// 连接
+			try {
+				con.connect();
+				// 远程服务器的用户名密码
+				// boolean isAuthed = con.authenticateWithPassword("root",
+				// "13a230ae5dc2");
+				boolean isAuthed = con
+						.authenticateWithPassword("root", "admin");
+				if (isAuthed == true) {
+					// 建立SCP客户端
+					SCPClient scpClient = con.createSCPClient();
+					// 服务器端的文件下载到本地的目录下
+					// scpClient.get("/pic/1.png", "F:/");
+					// scpClient.put(str, "/picImage/");///pic/为图片文件夹
+					scpClient.put(str, "/pic/");// /pic/为图片文件夹
+					// 将本地文件上传到服务器端的目录下
+					// scpClient.put("F:/3.png", "/pic/");
+				} else {
+					mgs = "不能打开连接，可能是账号密码错误请检查";
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				con.close();// 关闭链接
+			}
+
+		}
+		return mgs;
+	}
+
+	/**
+	 * 产生主键规则为（参数+当前毫秒数+两位随机数）
+	 * 
+	 * @param param
+	 *            (前缀)
+	 * @return
+	 */
+	public static String major(String param) {
+		// 产生四位数的随机数
+		boolean bool[] = new boolean[99];
+		Random rand = new Random();
+		int num = 0;
+
+		do { // 如果产生的数相同继续循环
+			num = rand.nextInt(99);
+		} while (bool[num]);
+		String timeMillis = String.valueOf(System.currentTimeMillis());
+		return param + timeMillis + num;
+	}
+
+}

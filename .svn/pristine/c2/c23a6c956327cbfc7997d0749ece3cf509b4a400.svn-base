@@ -1,0 +1,12 @@
+jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://192.168.0.128:3306/agency_db
+jdbc.username=root
+jdbc.password=root
+jdbc.minPoolSize=10
+jdbc.maxPoolSize=200
+jdbc.initialPoolSize=20
+jdbc.maxIdleTime=60
+jdbc.acquireIncrement=20
+jdbc.maxStatements=10
+jdbc.idleConnectionTestPeriod=60
+jdbc.acquireRetryAttempts=30

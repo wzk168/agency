@@ -1,0 +1,52 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="${pageContext.request.contextPath}/resources/css/dtree.css"
+	rel="stylesheet" type="text/css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/jquery.1.7.2.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/dtree.js"></script>
+
+<title>使用公司列表</title>
+
+
+</head>
+<body>
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">平台</a></li>
+			<li><a href="#">险种产品</a></li>
+		</ul>
+	</div>
+
+<div class="dtree">
+	<p><a href="javascript: d.openAll();">open all</a> | <a href="javascript: d.closeAll();">close all</a></p>
+	<script type="text/javascript">
+		
+	<!--
+	d = new dTree('d');
+	d.add('s0','-1','My example tree');
+	d.add('s1','s0','Node 1','example01.html');
+	d.add('s2','s0','Node 2','example01.html');
+	d.add('s3','s1','Node 1.1','example01.html');
+	d.add('s4','s0','Node 3','example01.html');
+	d.add('s5','s3','Node 1.1.1','example01.html');
+	d.add('6','s5','Node 1.1.1.1','example01.html');
+	d.add('7','s0','Node 4','example01.html');
+	d.add('8','s1','Node 1.2','example01.html');
+	d.add('s9','s0','My Pictures','example01.html','Pictures I\'ve taken over the years','','','img/imgfolder.gif');
+	d.add('10','s9','The trip to Iceland','example01.html','Pictures of Gullfoss and Geysir');
+	d.add('11','s9','Mom\'s birthday','example01.html');
+	d.add('12','s0','Recycle Bin','example01.html','','','${pageContext.request.contextPath}/resources/images/trash.gif');
+
+	document.write(d);
+
+	//-->
+</script>
+</div>
+</body>
+</html>

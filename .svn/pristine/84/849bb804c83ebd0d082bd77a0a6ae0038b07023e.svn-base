@@ -1,0 +1,137 @@
+package com.agency.koda.dao.impl;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+import com.agency.koda.dao.MenuDao;
+import com.agency.koda.model.MenuInfo;
+import com.agency.koda.model.SubmenuInfo;
+import com.agency.koda.utils.BaseDaoImpl;
+
+/**
+ * 系统菜单数据层
+ * 
+ * @author Waco
+ *
+ */
+@SuppressWarnings({ "unchecked", "rawtypes", "deprecation" })
+@Repository
+public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
+
+	@Override
+	public List<MenuInfo> loadMu(String userId, String companyId, int pageSize,
+			int pageNow) {
+		Object[] paraes = null;
+		ArrayList<Object> listParaes = new ArrayList<Object>();
+		StringBuffer stringBuffer = new StringBuffer(
+				"SELECT ms_menu_id,ms_menu_name,ms_menu_img FROM ay_menu_sys WHERE ms_menu_id IN("
+						+ " SELECT sms_menu_id FROM ay_submenu_sys WHERE sms_submenu_id IN"
+						+ " (SELECT rss_submenu_id FROM ay_role_submenu_sys WHERE rss_roleinfo_id IN("
+						+ " SELECT ros_roleinfo_id FROM ay_roleinfo_sys WHERE ros_roleinfo_id IN"
+						+ " (SELECT rus_roleinfo_id FROM ay_role_user_sys WHERE rus_userinfo_id=?)"
+						+ " AND ros_company_id=?)) GROUP BY sms_menu_id)");
+		listParaes.add(userId);
+		listParaes.add(companyId);
+		if (pageSize != 0 && pageNow != 0) {
+			stringBuffer.append(" LIMIT ?,?");
+			listParaes.add((pageNow - 1) * pageSize);
+			listParaes.add(pageSize);
+		}
+		paraes = listParaes.toArray();
+		try {
+			List<MenuInfo> menuInfos = this.getJdbcTemplate().query(
+					stringBuffer.toString(), paraes, new RowMapper() {
+						@Override
+						public Object mapRow(ResultSet rt, int index)
+								throws SQLException {
+							MenuInfo info = new MenuInfo();
+							info.setMsMenuname(rt.getString("ms_menu_name"));
+							info.setMsMenuId(rt.getString("ms_menu_id"));
+							info.setMsMenuImg(rt.getString("ms_menu_img"));
+							return info;
+						}
+					});
+			return (null != menuInfos && menuInfos.size() > 0 ? menuInfos
+					: null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<SubmenuInfo> loadSu(String userId, String companyId,
+			int pageSize, int pageNow) {
+		Object[] paraes = null;
+		ArrayList<Object> listParaes = new ArrayList<Object>();
+		StringBuffer stringBuffer = new StringBuffer(
+				"SELECT sms_menu_id,sms_submenu_name,sms_submenu_like "
+						+ " FROM ay_submenu_sys WHERE sms_submenu_id IN"
+						+ " (SELECT rss_submenu_id FROM ay_role_submenu_sys WHERE rss_roleinfo_id IN("
+						+ " SELECT ros_roleinfo_id FROM ay_roleinfo_sys WHERE ros_roleinfo_id IN"
+						+ " (SELECT rus_roleinfo_id FROM ay_role_user_sys WHERE rus_userinfo_id=?"
+						+ " ) AND ros_company_id=?))");
+		listParaes.add(userId);
+		listParaes.add(companyId);
+		if (pageSize != 0 && pageNow != 0) {
+			stringBuffer.append(" LIMIT ?,?");
+			listParaes.add((pageNow - 1) * pageSize);
+			listParaes.add(pageSize);
+		}
+		paraes = listParaes.toArray();
+		try {
+			List<SubmenuInfo> submenuInfos = this.getJdbcTemplate().query(
+					stringBuffer.toString(), paraes, new RowMapper() {
+						@Override
+						public Object mapRow(ResultSet rt, int index)
+								throws SQLException {
+							SubmenuInfo info = new SubmenuInfo();
+							info.setSmsMenuId(rt.getString("sms_menu_id"));
+							info.setSmsSubmenuName(rt
+									.getString("sms_submenu_name"));
+							info.setSmsSubmenuLike(rt
+									.getString("sms_submenu_like"));
+							return info;
+						}
+					});
+			return (null != submenuInfos && submenuInfos.size() > 0 ? submenuInfos
+					: null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public int count(String userId, String companyId, int countWhich) {
+		StringBuffer stringBuffer = new StringBuffer(
+				"SELECT COUNT(1) FROM ay_menu_sys WHERE ms_menu_id IN("
+						+ " SELECT sms_menu_id FROM ay_submenu_sys WHERE sms_submenu_id IN"
+						+ " (SELECT rss_submenu_id FROM ay_role_submenu_sys WHERE rss_roleinfo_id IN("
+						+ " SELECT ros_roleinfo_id FROM ay_roleinfo_sys WHERE ros_roleinfo_id IN"
+						+ " (SELECT rus_roleinfo_id FROM ay_role_user_sys WHERE rus_userinfo_id=?)"
+						+ " AND ros_company_id=?)) GROUP BY sms_menu_id)");
+		if (countWhich != 0) {// 统计子菜单
+			stringBuffer = new StringBuffer(
+					"SELECT COUNT(1) "
+							+ " FROM ay_submenu_sys WHERE sms_submenu_id IN"
+							+ " (SELECT rss_submenu_id FROM ay_role_submenu_sys WHERE rss_roleinfo_id IN("
+							+ " SELECT ros_roleinfo_id FROM ay_roleinfo_sys WHERE ros_roleinfo_id IN"
+							+ " (SELECT rus_roleinfo_id FROM ay_role_user_sys WHERE rus_userinfo_id=?"
+							+ " ) AND ros_company_id=?))");
+		}
+		try {
+			return this.getJdbcTemplate().queryForInt(stringBuffer.toString(),
+					userId, companyId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+}
