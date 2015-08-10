@@ -24,6 +24,7 @@ import com.agency.koda.utils.BaseController;
 @Controller
 @RequestMapping(value = "/user")
 public class LoginController extends BaseController {
+	
 	@Autowired
 	private UserService userService;
 	@Autowired
