@@ -16,16 +16,21 @@ $(function() {
 		$(".tip").fadeOut(200);
 	});
 
-	$(".sure").click(function() {
-		if (clickWhich == "addmsg") {
-			checkInputMsg();
-		}
-		if (clickWhich == "updatemsg") {
-			checkInputMsg();
-		}
-		$("#addMenuForm").submit();
-		$(".tip").fadeOut(100);
-	});
+	$(".sure").click(
+			function() {
+				if (clickWhich == "addmsg") {
+					checkInputMsg();
+					document.getElementById('addMenuForm').setAttribute(
+							'action', 'addMenu.html');
+				}
+				if (clickWhich == "updatemsg") {
+					checkInputMsg();
+					document.getElementById('addMenuForm').setAttribute(
+							'action', 'updateMenu.html');
+				}
+				$("#addMenuForm").submit();
+				$(".tip").fadeOut(100);
+			});
 
 	$(".cancel").click(function() {
 		$(".tip").fadeOut(100);
@@ -43,6 +48,7 @@ $(function() {
 			document.getElementById('msMenuImg').focus();
 			return;
 		}
+
 	}
 
 	function findTbody() {
@@ -60,6 +66,7 @@ $(function() {
 			url : "loadMenu.html",
 			dataType : "json",
 			success : function(msg) {
+				$("#msMenuId").val(data);
 				$("#msMenuname").val(msg.msMenuname);
 				$("#msMenuImg").val(msg.msMenuImg);
 				$("#titleName").text("修改菜单");

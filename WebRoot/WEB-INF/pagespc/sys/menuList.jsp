@@ -50,7 +50,8 @@
 			<tbody>
 				<c:forEach items="${menuInfos}" var="menuList">
 					<tr>
-						<td><input name="msMenuId" type="radio" value="${menuList.msMenuId}" /></td>
+						<td><input name="msMenuId" type="radio"
+							value="${menuList.msMenuId}" /></td>
 						<td>${menuList.msMenuId}</td>
 						<td>${menuList.msMenuname}</td>
 						<td>${menuList.msMenuImg}</td>
@@ -99,7 +100,7 @@
 
 			<div style="padding-top: 30px; margin-left: 25px; height: 95px">
 				<div class="tipright">
-					<form id="addMenuForm" action="addMenu.html" method="post">
+					<form id="addMenuForm" action="" method="post">
 						<p>
 							<label>菜单名:</label>&nbsp;&nbsp;<input name="msMenuname"
 								id="msMenuname" type="text" class="dfinput" />
@@ -108,6 +109,7 @@
 							<label>图片名:</label>&nbsp;&nbsp;<input name="msMenuImg"
 								id="msMenuImg" type="text" class="dfinput" />
 						</p>
+						<input type="hidden" id="msMenuId" name="msMenuId">
 					</form>
 				</div>
 			</div>
