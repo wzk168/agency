@@ -22,11 +22,8 @@
 			success : function(data) {
 				if(parem=="PCG")
 				{
-					alert(data);
-					alert("1");
-					alert(data.pcgProdclassId);
 					$("#pcgProdclassNameId").val(data.pcgProdclassName);
-					  $("#div1").css("display","block")
+					$("#div1").css("display","block");
 					//险种产品大类
 				}else if(parem=="PG")
 				{
@@ -90,7 +87,7 @@
 	<div class="apDiv2" id="apDiv2">
 		<div id="div1" style="display: none;">
 	<ul class="forminfo">
-	                 <li><div class="formtext">Hi，添加保险产品类型!!!</div></li>
+	                 <li><div class="formtext">Hi保险产品!!!</div></li>
 					<li><label>险种类型名称<b>*</b></label><input id="pcgProdclassNameId" name="pcgProdclassName" type="text"
 						class="dfinput" style="width: 300px;" /></li>
 					<li><label>&nbsp;</label>
