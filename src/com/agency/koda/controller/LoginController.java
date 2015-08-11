@@ -32,7 +32,7 @@ public class LoginController extends BaseController {
 
 	/**
 	 * session过期提示
-	 * sdfsdf
+	 * 
 	 * @return
 	 */
 	@RequestMapping(value = "/sessionAlert", method = RequestMethod.GET)
