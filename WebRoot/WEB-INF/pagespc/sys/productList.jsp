@@ -68,114 +68,133 @@
 						<th>险种产品名</th>
 						<th>操作 <img
 						src="${pageContext.request.contextPath}/resources/images/leftico03.png"
-						class="addiv"/></th>
+						class="addpcg"/></th>
 					</tr>
 				</thead>
 				<tbody>
 				<c:forEach items="${proclaslist}" var="proclas">
 				<tr>
 					<td>${proclas.pcgProdclassId}</td><td>${proclas.pcgProdclassName}</td>
-					<td><a href="#" class="tablelink">修改</a> <a href="#"
+					<td><a href="#" class="tablelink" onclick="uppcg('${proclas.pcgProdclassId}')" >修改</a> <a href="#"
 							class="tablelink"> 删除</a></td></tr>
 				</c:forEach>
 				</tbody>
 			</table>
 			</div>
-		</div>
-		
-		<!-- 险种大类 -->
-		<div id="tab3" class="tabson">
 			
-			<table class="tablelist">
-				<thead>
-					<tr>
-						<th>险种父类ID</th>
-						<th>险种父类名</th>
-						<th>险种产品ID</th>
-						<th>操作 <img
-						src="${pageContext.request.contextPath}/resources/images/leftico03.png"
-						class="addiv"/></th>
-					</tr>
-				</thead>
-				<tbody>
-				<c:forEach items="${prodtypelist}" var="protype">
-				<tr>
-					<td>${protype.ptgProdtypeId}</td>
-					<td>${protype.ptgProdtypeName}</td>
-					<td>${protype.ptgProdclassId}</td>
-					<td><a href="#" class="tablelink">修改</a> <a href="#"
-							class="tablelink"> 删除</a></td></tr>
-				</c:forEach>
-				</tbody>
-			</table>
+			
 			
 		</div>
-		<!-- 险种产品 -->
-		<div id="tab4" class="tabson">
-		<table class="tablelist">
-				<thead>
-					<tr>
-						<th>险种子类ID</th>
-						<th>险种子类名</th>
-						<th>险种父类ID</th>
-						<th>是否主险</th>
-						<th>操作 <img
-						src="${pageContext.request.contextPath}/resources/images/leftico03.png"
-						class="addiv"/></th>
-					</tr>
-				</thead>
-				<tbody>
-				<c:forEach items="${prodlist}" var="pord">
-				<tr>
-					<td>${pord.pgProdId}</td>
-					<td>${pord.pgProdName}</td>
-					<td>${pord.pgProdtypeId}</td>
-					<td>
-					<c:if test="${pord.pgProdFlagmain==1}">主险</c:if>
-					<c:if test="${pord.pgProdFlagmain==0}">副险</c:if>
-					</td>
-					
-					<td><a href="#" class="tablelink">修改</a> <a href="#"
-							class="tablelink"> 删除</a></td></tr>
-				</c:forEach>
-				</tbody>
-			</table>
-		</div>
-
 	    </div>
 	    
-	    
-	    <div class="tip">
+	    <!-- 添加险种产品 -->
+	    <div class="tip1" id="addpcgdiv">
 			<div class="tiptop">
-				<span id="titleName">添加菜单</span><a></a>
+				<span id="titleName">添加险种类型</span><a></a>
 			</div>
 			<div style="padding-top: 30px; margin-left: 25px; height: 70px">
 				<div class="tipright">
-					<form id="addMenuForm" action="" method="post">
+					<form id="addpcgfrom" action="" method="post">
 						<p>
-							<label>险种产品名:</label>&nbsp;&nbsp;<input name="msMenuname"
-								id="msMenuname" type="text" class="dfinput" />
+							<label>险种产品名:</label>&nbsp;&nbsp;<input name="pcgProdclassName"
+								id="pcgProdclassNameId" type="text" class="dfinput1" /><i id="pcgProdclassNamelabel"></i>
 						</p>
 					</form>
 				</div>
 			</div>
 			<div class="tipbtn">
-				<input name="" type="button" class="sure" value="确定" />&nbsp; <input
-					name="" type="button" class="cancel" value="取消" />
+				<input id="addpcgbut" type="button" class="sure" value="确定" />&nbsp; <input
+					id="celpcgbut" type="button" class="cancel" value="取消" />
 			</div>
 		</div>
+		<!-- 修改险种产品 -->
+		    <div class="tip2" id="uppcgdiv">
+			<div class="tiptop">
+				<span id="titleName">修改险种类型</span><a></a>
+			</div>
+			<div style="padding-top: 30px; margin-left: 25px; height: 70px">
+				<div class="tipright">
+					<form id="addpcgfrom" action="" method="post">
+						<p>
+							<label>险种产品名:</label>&nbsp;&nbsp;<input name="pcgProdclassName"
+								id="pcgProdclassNameId" type="text" class="dfinput1" /><i id="pcgProdclassNamelabel"></i>
+						</p>
+					</form>
+				</div>
+			</div>
+			<div class="tipbtn">
+				<input id="pcgup" type="button" class="sure" value="确定" />&nbsp; <input
+					id="uppcgcel" type="button" class="cancel" value="取消" />
+			</div>
+		</div>
+		
 	<script type="text/javascript">
 		$("#usual1 ul").idTabs();
 		
 		$(document).ready(function(){
-			  $(".addiv").click(function(){
-			  $(".tip").fadeIn(200);
+			//险种产品弹出层
+			  $(".addpcg").click(function(){
+			  $(".tip1").fadeIn(200);
 			  });
-			  $(".cancel").click(function(){
-				  $(".tip").fadeOut(100);
+			//险种产品关闭层
+			  $("#celpcgbut").click(function(){
+				  $(".tip1").fadeOut(100);
 				});
-
+			  
 			});
+		
+		function addpcg()
+		{
+			//添加险种产品信息
+	
+				  if($("#pcgProdclassNameId").val().replace(/\ +/g, "")==null || $("#pcgProdclassNameId").val().replace(/\ +/g, "")=="")
+				  {
+					  $("#pcgProdclassNamelabel").html(
+						'<font color="red" size="12px">险种大类不为空</font>');
+			     	return false;
+				  }
+				  $.ajax({
+						type : "post",
+						url : "addProductInfo.html",
+						data : $("#addpcgfrom").serialize(),
+						dataType : "text",
+						success : function(data) {
+							if (data > 0) {
+								reloadprod();
+							}
+						},
+						error : function(XMLHttpRequest, textStatus, errorThrown) {
+							alert(errorThrown);
+						}
+					});
+		}
+		 //险种产品点击修改
+		function uppcg(prodId)
+		{
+		    	if(confirm("你确定要修改该险种产品吗???"))
+		    	{
+		    		 $.ajax({
+							type : "post",
+							url : "addProductInfo.html?prodId="+prodId+"&prodType='PCG'",
+							data : $("#addpcgfrom").serialize(),
+							dataType : "text",
+							success : function(data) {
+								if (data > 0) {
+									  $("#uppcgdiv").fadeIn(200);
+								}
+							},
+							error : function(XMLHttpRequest, textStatus, errorThrown) {
+								alert(errorThrown);
+							}
+						});
+		    	}
+		    	
+		
+		}
+		//重新树
+		function reloadprod() {
+			window.location.href = "selProdectTree.html";
+		}
 	</script>
 </body>
 </html>
