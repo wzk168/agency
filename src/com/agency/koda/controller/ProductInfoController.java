@@ -94,8 +94,14 @@ public class ProductInfoController extends BaseController
 	{
 		ModelAndView mav=new ModelAndView();
 		String tree=this.productService.selProductTree();//查询所有保险产品信息
+		List<ProductClass> proclaslist=this.productService.loadProdClassList();
+		List<Product> prodlist=this.productService.loadProductList();
+		List<ProductType> prodtypelist=this.productService.loadProductTypeList();
 		mav.setViewName("sys/productList");
 		mav.addObject("tree",tree);
+		mav.addObject("proclaslist",proclaslist);
+		mav.addObject("prodlist",prodlist);
+		mav.addObject("prodtypelist",prodtypelist);
 		return mav;
 	}
 	/**

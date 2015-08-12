@@ -225,4 +225,61 @@ public class ProductInfoDaoImpl extends BaseDaoImpl implements ProductInfoDao
 		return null;
 	}
 
+	//险种子类列表
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> loadProductList() {
+		String selSql="SELECT pg_prod_id,pg_prod_name,pg_prodtype_id,pg_prod_flagmain FROM ay_product_msg";
+		try {
+			List<Product> prodlist= this.getJdbcTemplate().query(selSql,new ProductSet());
+			return (null!=prodlist && prodlist.size()>0?prodlist:null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	//险种产品子类遍历
+	@SuppressWarnings("rawtypes")
+	public class ProductSet implements RowMapper
+	{
+		@Override
+		public Object mapRow(ResultSet rs, int index) throws SQLException {
+			Product product=new Product();
+			product.setPgProdFlagmain(rs.getInt("pg_prod_flagmain"));//是否主险
+			product.setPgProdId(rs.getString("pg_prod_id"));//子险种ID
+			product.setPgProdtypeId(rs.getString("pg_prodtype_id"));//副ID
+			product.setPgProdName(rs.getString("pg_prod_name"));//险种名称
+			return product;
+		}}
+	
+	//险种父类列表
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ProductType> loadProductTypeList() {
+		String selprodTypeSql="SELECT ptg_prodtype_id,ptg_prodtype_name,ptg_prodclass_id FROM ay_product_type_msg";
+		try {
+			List<ProductType> prodtypelist=this.getJdbcTemplate().query(selprodTypeSql,new ProductTypeSet());
+			return (null!=prodtypelist&& prodtypelist.size()>0?prodtypelist:null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	//险种父类遍历
+	@SuppressWarnings("rawtypes")
+	public class ProductTypeSet implements RowMapper
+	{
+		@Override
+		public Object mapRow(ResultSet rs, int index) throws SQLException {
+			ProductType productType=new ProductType();
+			productType.setPtgProdclassId(rs.getString("ptg_prodclass_id"));
+			productType.setPtgProdtypeId(rs.getString("ptg_prodtype_id"));
+			productType.setPtgProdtypeName(rs.getString("ptg_prodtype_name"));
+			return productType;
+		}
+
+	}
+
 }

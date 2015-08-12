@@ -22,6 +22,17 @@ public interface ProductInfoDao
 	public int addProductClass(ProductClass prodclass);
 
 	/**
+	 * 保险险种子类
+	 * @return
+	 */
+	public List<Product> loadProductList();
+
+	/**
+	 * 保险险种父类
+	 * @return
+	 */
+	public List<ProductType> loadProductTypeList();
+	/**
 	 * 查询所有险种大类
 	 * @return
 	 */
@@ -70,20 +81,20 @@ public interface ProductInfoDao
 	 * @return
 	 */
 	public String selProductTree();
-	
+
 	/**
 	 * 保险产品类型(对象)
 	 * @param ptgProdtypeId
 	 * @return
 	 */
 	public ProductType loadProductTypeEntity(String ptgProdtypeId); 
-	
+
 	/**
 	 * 查询保险分类对象
 	 * @param pgProdId
 	 * @return
 	 */
 	public Product loadProductEntity(String pgProdId);
-	
-	
+
+
 }

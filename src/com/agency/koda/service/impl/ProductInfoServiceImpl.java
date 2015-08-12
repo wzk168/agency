@@ -80,5 +80,15 @@ public class ProductInfoServiceImpl implements ProductInfoService
 	public ProductType loadProductTypeEntity(String ptgProdtypeId) {
 		return prodClasDao.loadProductTypeEntity(ptgProdtypeId);
 	}
+	//险种产品子类
+	@Override
+	public List<Product> loadProductList() {
+		return prodClasDao.loadProductList();
+	}
+	//险种产品父类
+	@Override
+	public List<ProductType> loadProductTypeList() {
+		return prodClasDao.loadProductTypeList();
+	}
 	
 }

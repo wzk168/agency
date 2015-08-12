@@ -79,4 +79,16 @@ public interface ProductInfoService
 	 * @return
 	 */
 	public Product loadProductEntity(String pgProdId);
+	
+	/**
+	 * 保险险种子类
+	 * @return
+	 */
+	public List<Product> loadProductList();
+
+	/**
+	 * 保险险种父类
+	 * @return
+	 */
+	public List<ProductType> loadProductTypeList();
 }
