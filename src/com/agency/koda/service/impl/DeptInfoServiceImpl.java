@@ -20,12 +20,16 @@ public class DeptInfoServiceImpl implements DeptInfoService
 	@Override
 	public int addDeptInfo(DeptInfo deptInfo) {
 		
-		return 0;
+		return deptDao.addDeptInfo(deptInfo);
 	}
 	//部门信息列表
 	@Override
 	public List<DeptInfo> loadDeptList(String dsCompanyId) {
 		
-		return null;
+		return deptDao.loadDeptList(dsCompanyId);
+	}
+	@Override
+	public int updateDepetlist(DeptInfo deptInfo) {
+		return deptDao.updateDepetlist(deptInfo);
 	}
 }

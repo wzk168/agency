@@ -1,0 +1,40 @@
+package com.agency.koda.dao;
+
+import java.util.List;
+
+import com.agency.koda.model.TeamInfo;
+
+/**
+ * 团队接口dao
+ * @author meng
+ *
+ */
+public interface TeamInfoDao {
+
+	/**
+	 * 添加团队基本信息
+	 * @param teamInfo
+	 * @return
+	 */
+	public int addTeamInfo(TeamInfo teamInfo);
+	
+	/**
+	 * 修改团队信息
+	 * @param teamInfo
+	 * @return
+	 */
+	public int updateTeamInfo(TeamInfo teamInfo);
+	
+	/**
+	 * 团队查询信息
+	 * @param teamName 团队名称
+	 * @param teamType 团队类型
+	 * @param teamPrincipal 团队负责人
+	 * @return
+	 */
+	public List<TeamInfo> loadTeamList(String teamName,int teamType,String teamPrincipal);
+	
+	
+	
+	
+}

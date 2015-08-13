@@ -23,5 +23,12 @@ public interface DeptInfoDao
 	 * @return
 	 */
 	public List<DeptInfo> loadDeptList(String dsCompanyId);
+	
+	/**
+	 * 修改部门信息
+	 * @param deptInfo
+	 * @return
+	 */
+	public int updateDepetlist(DeptInfo deptInfo);
 
 }

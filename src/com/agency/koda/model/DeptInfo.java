@@ -39,7 +39,7 @@ public class DeptInfo implements Serializable
 	 * 部门类型
 	 * ds_dept_type
 	 */
-	private int ds_dept_type;
+	private int dsDeptType;
 
 	/**
 	 * 部门ID
@@ -103,12 +103,12 @@ public class DeptInfo implements Serializable
 		this.dsDeptPrincipal = dsDeptPrincipal;
 	}
 
-	public int getDs_dept_type() {
-		return ds_dept_type;
+	public int getDsDeptType() {
+		return dsDeptType;
 	}
 
-	public void setDs_dept_type(int ds_dept_type) {
-		this.ds_dept_type = ds_dept_type;
+	public void setDsDeptType(int dsDeptType) {
+		this.dsDeptType = dsDeptType;
 	}
 
 	public String getDsDeptAddress() {
