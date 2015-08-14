@@ -113,7 +113,7 @@ public class ProductInfoController extends BaseController
 	@RequestMapping(value="/loadProductInfoAjax",method=RequestMethod.POST)
 	@ResponseBody
 	public void loadProductInfoAjax(@RequestParam("prodId") String prodId,
-			@RequestParam("prodType") String prodType,
+			@RequestParam( value="prodType",required=false) String prodType,
 			HttpServletResponse response)
 	{
 		String entityinfo=null;
