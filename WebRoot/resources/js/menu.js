@@ -79,3 +79,6 @@ $(function() {
 
 	}
 });
+function showSubMenu(menuId) {
+	alert(menuId);
+}
