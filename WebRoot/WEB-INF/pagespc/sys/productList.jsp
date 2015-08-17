@@ -154,11 +154,15 @@
 					<form id="addMenuForm" action="" method="post">
 						<p>
 							<label>菜单名:</label>&nbsp;&nbsp;<input name="msMenuname"
-								id="msMenuname" type="text" class="dfinput" />
+								id="msMenuname" type="text" class="dfinput1" />
 						</p>
 						<p style="margin-top: 5px;">
 							<label>图片名:</label>&nbsp;&nbsp;<input name="msMenuImg"
-								id="msMenuImg" type="text" class="dfinput" />
+								id="msMenuImg" type="text" class="dfinput1" />
+						</p>
+						<p style="margin-top: 5px;">
+							<label>图片名:</label>&nbsp;&nbsp;<input name="msMenuImg"
+								id="msMenuImg" type="text" class="dfinput1" />
 						</p>
 						<input type="hidden" id="msMenuId" name="msMenuId">
 					</form>
