@@ -55,8 +55,7 @@
 						<td>${menuList.msMenuId}</td>
 						<td>${menuList.msMenuname}</td>
 						<td>${menuList.msMenuImg}</td>
-						<td><a href="#" class="tablelink">查看</a> <a href="#"
-							class="tablelink"> 删除</a></td>
+						<td><a href="#" class="tablelink">查看子菜单</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
