@@ -1,6 +1,7 @@
 package com.agency.koda.dao.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.List;
 
 import org.springframework.jdbc.core.RowMapper;
@@ -37,9 +38,9 @@ public class DeptInfoDaoImpl extends BaseDaoImpl implements DeptInfoDao
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<DeptInfo> loadDeptList(String dsCompanyId) {
-    String selSql="SELECT ds_dept_id,ds_dept_name,ds_dept_abbreviation,ds_dept_principal,ds_company_id FROM ay_deptinfo_sys WHERE ds_company_id=?";
+    String selSql="SELECT ds_dept_id,ds_dept_name,ds_dept_abbreviation,ds_dept_principal,ds_company_id,ds_dept_onephone FROM ay_deptinfo_sys WHERE ds_company_id=?";
     try {
-		List<DeptInfo> deptlist=this.getJdbcTemplate().query(selSql, new Object[]{dsCompanyId},new DeptInfoSet());
+		List<DeptInfo> deptlist=this.getJdbcTemplate().query(selSql, new Object[]{dsCompanyId},new int[]{Types.VARCHAR},new DeptInfoSet());
 		return (null!=deptlist&&deptlist.size()>0?deptlist:null);
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -58,6 +59,7 @@ public class DeptInfoDaoImpl extends BaseDaoImpl implements DeptInfoDao
 			dept.setDsDeptId(rs.getString("ds_dept_id"));
 			dept.setDsDeptName(rs.getString("ds_dept_name"));
 			dept.setDsDeptPrincipal(rs.getString("ds_dept_principal"));
+			dept.setDsDeptOnephone(rs.getString("ds_dept_onephone"));
 			return dept;
 		}
 		
@@ -68,8 +70,8 @@ public class DeptInfoDaoImpl extends BaseDaoImpl implements DeptInfoDao
 		String upDeptSql="UPDATE ay_deptinfo_sys SET ds_dept_name=?,ds_dept_abbreviation=?,ds_dept_principal=?,ds_dept_type=?,ds_dept_address=?,ds_dept_onephone=?,ds_dept_twophone=?,ds_dept_email=?,ds_company_id=? WHERE ds_dept_id=?";
       try {
     	  return this.getJdbcTemplate().update(upDeptSql,
-					deptInfo.getDsDeptName(),deptInfo.getDsDeptAbbreviation(),deptInfo.getDsDeptPrincipal()
-					,deptInfo.getDsDeptType(),deptInfo.getDsDeptAddress(),
+					deptInfo.getDsDeptName(),deptInfo.getDsDeptAbbreviation(),deptInfo.getDsDeptPrincipal(),
+					deptInfo.getDsDeptType(),deptInfo.getDsDeptAddress(),
 					deptInfo.getDsDeptOnephone(),deptInfo.getDsDeptTwophone(),
 					deptInfo.getDsDeptEmail(),deptInfo.getDsCompanyId(),deptInfo.getDsDeptId());
 	} catch (Exception e) {

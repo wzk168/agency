@@ -42,7 +42,7 @@ public class DeptInfo implements Serializable
 	private int dsDeptType;
 
 	/**
-	 * 部门ID
+	 * 部门地址
 	 * ds_dept_address
 	 */
 	private String dsDeptAddress;
