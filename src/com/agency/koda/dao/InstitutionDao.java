@@ -7,7 +7,7 @@ import com.agency.koda.model.InsuranceCompany;
 
 /**
  * 机构管理（保险公司，保险公司分支机构）
- * @author Administrator
+ * @author meng
  *
  */
 public interface InstitutionDao
