@@ -206,22 +206,20 @@
 					//保存修改
 				"修改保存": function() {
 						var bValid = true;
-							bValid = bValid && checkLength( "tsTeamName", "团队名", 3, 16,"validateTips");
-							bValid = bValid && checkselect( "tsDeptId", "部门名称","validateTips");
-							bValid = bValid && checkLength( "tsTeamPrincipal", "负责人", 3, 16,"validateTips");
-							bValid = bValid && checkselect( "tsTeamType", "团队类型","validateTips");
+							bValid = bValid && checkLength( "tsTeamNameId", "团队名", 3, 16,"validateTips1");
+							bValid = bValid && checkselect( "tsDeptIdId", "部门名称","validateTips1");
+							bValid = bValid && checkLength( "tsTeamPrincipalId", "负责人", 3, 16,"validateTips1");
+							bValid = bValid && checkselect( "tsTeamTypeId", "团队类型","validateTips1");
 					    if(bValid)
 					    {
-					    	
 					    	$.ajax({
 								type : "post",
-								url : "addTeamInfo.html",
-								data : $("#addteamfrom").serialize(),
+								url : "updTeamInfo.html",
+								data : $("#upteamfrom").serialize(),
 								dataType : "text",
 								success : function(data) {
 									if (data > 0) {
 										//$( this ).dialog( "close" );
-										
 										reloteam();
 									}
 								},
@@ -251,13 +249,13 @@
 								dataType : "json",
 								success : function(data) {
 									if (null!=data) {
-										
+									$("#tsDeptIdId").val(data.tsDeptId);
 									$("#tsTeamNameId").val(data.tsTeamName);
 									$("#tsTeamPrincipalId").val(data.tsTeamPrincipal);
 									$("#tsTeamTypeId").val(data.tsTeamType);
 									$("#tsCompanyIdId").val(data.tsCompanyId);
 									$("#tsTeamIdId").val(data.tsTeamId);
-										$( "#dialog-form1" ).dialog( "open" );
+									$( "#dialog-form1" ).dialog( "open" );
 									}
 								},
 								error : function(XMLHttpRequest, textStatus, errorThrown) {
