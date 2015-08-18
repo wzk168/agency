@@ -28,8 +28,14 @@ public class DeptInfoServiceImpl implements DeptInfoService
 		
 		return deptDao.loadDeptList(dsCompanyId);
 	}
+	//修改部门信息
 	@Override
 	public int updateDepetlist(DeptInfo deptInfo) {
 		return deptDao.updateDepetlist(deptInfo);
+	}
+	//根据ID查询部门对象
+	@Override
+	public DeptInfo loadDeptEntity(String dsDeptId) {
+		return deptDao.loadDeptEntity(dsDeptId);
 	}
 }

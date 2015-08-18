@@ -34,6 +34,11 @@ public class TeamInfoServiceImpl implements TeamInfoService
 	public int updateTeamInfo(TeamInfo teamInfo) {
 		return teamDao.updateTeamInfo(teamInfo);
 	}
+	//根据团队ID查询对象
+	@Override
+	public TeamInfo loadTeamEntity(String tsTeamId) {
+		return teamDao.loadTeamEntity(tsTeamId);
+	}
 	
 	
 	

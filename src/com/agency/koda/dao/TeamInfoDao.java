@@ -35,6 +35,11 @@ public interface TeamInfoDao {
 	public List<TeamInfo> loadTeamList(String teamName,int teamType,String teamPrincipal);
 	
 	
-	
+	/**
+	 * 根据团队ID查询团队对象
+	 * @param tsTeamId 团队ID
+	 * @return
+	 */
+	public TeamInfo loadTeamEntity(String tsTeamId);
 	
 }

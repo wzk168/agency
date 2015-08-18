@@ -23,6 +23,8 @@
 			<ul class="toolbar">
 				<li class="adduydiv"><span><img
 						src="${pageContext.request.contextPath}/resources/images/t01.png" onclick="beforaddDept()"/></span>添加</li>
+			<li class="upclick"><span><img
+						src="${pageContext.request.contextPath}/resources/images/t02.png" onclick="beforUpDept()"/></span>修改</li>
 			</ul>
 
 		</div>
@@ -50,7 +52,10 @@
 								<td>${dept.dsDeptName}</td>
 								<td>${dept.dsDeptAbbreviation}</td>
 								<td>${dept.dsDeptPrincipal}</td>
-								<td>${dept.dsDeptType}</td>
+								<td>
+								<c:if test="${dept.dsDeptType==1}">管理部</c:if>
+								<c:if test="${dept.dsDeptType==2}">业务部</c:if>
+								</td>
 								<td>${dept.dsDeptOnephone}</td>
 							</tr>
 						</c:forEach>
@@ -66,6 +71,16 @@
 		function beforaddDept()
 		{
 			window.location.href = "beforAddDept.html";
+		}
+		//点击修改进入js
+		function beforUpDept(){
+			var val = $("input[name='dsDeptId']:checked").val();
+			if(typeof(val)=='undefined'){
+            	alert("请选择部门再点击修改按钮");
+                    }else
+                    {
+                    	window.location.href = "beforUpdateDept.html?dsDeptId="+val;	
+                    }
 		}
 	</script>
 </body>

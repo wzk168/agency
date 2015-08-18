@@ -30,5 +30,12 @@ public interface DeptInfoDao
 	 * @return
 	 */
 	public int updateDepetlist(DeptInfo deptInfo);
+	
+	/**
+	 * 根据部门ID查询部门对象
+	 * @param dsDeptId 部门ID
+	 * @return
+	 */
+	public DeptInfo loadDeptEntity(String dsDeptId);
 
 }

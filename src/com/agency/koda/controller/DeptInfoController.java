@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -80,6 +81,35 @@ public class DeptInfoController extends BaseController
 		this.writeMsg(response, result);
 	}
 	
+	/**
+	 * 根据部门ID查询部门对象信息
+	 * @param dsDeptId 部门ID
+	 * @return
+	 */
+	@RequestMapping(value="/beforUpdateDept",method=RequestMethod.GET)
+	public ModelAndView beforUpdateDept(@RequestParam("dsDeptId") String dsDeptId)
+	{
+		ModelAndView mav=new ModelAndView();
+		if(null!=dsDeptId && !dsDeptId.equals(""))
+		{
+			DeptInfo dept=this.deptService.loadDeptEntity(dsDeptId);
+			mav.setViewName("sys/updateDeptInfo");
+			mav.addObject("dept",dept);
+		}
+		return mav;
+	}
 	
+	/**
+	 * 修改部门信息
+	 * @param deptInfo 部门对象
+	 * @param response
+	 */
+	@RequestMapping(value="/updateDept",method=RequestMethod.POST)
+	@ResponseBody
+	public void updateDept(DeptInfo deptInfo,HttpServletResponse response)
+	{
+		result=this.deptService.updateDepetlist(deptInfo);
+		this.writeMsg(response, result);
+	}
 
 }

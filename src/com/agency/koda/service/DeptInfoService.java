@@ -24,11 +24,20 @@ public interface DeptInfoService
 	 * @return
 	 */
 	public List<DeptInfo> loadDeptList(String dsCompanyId);
+	
 	/**
 	 * 修改部门信息
 	 * @param deptInfo
 	 * @return
 	 */
 	public int updateDepetlist(DeptInfo deptInfo);
+	
+	/**
+	 * 根据部门ID查询部门对象
+	 * @param dsDeptId 部门ID
+	 * @return
+	 */
+	public DeptInfo loadDeptEntity(String dsDeptId);
+
 
 }

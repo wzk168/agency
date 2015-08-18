@@ -54,7 +54,10 @@
     <li><label>联系电话2</label><input name="dsDeptTwophone" type="text" class="dfinput" /></li>
     <li><label>电子邮箱</label><input name="dsDeptEmail" type="text" class="dfinput" /></li>
    <li><label>地址</label><input name="dsDeptAddress" type="text" class="dfinput" /></li>
-    <li><label>&nbsp;</label><input name="" onclick="addDept()" type="button" class="btn" value="确认保存"/></li>
+    <li><label>&nbsp;</label>
+    <input name="" onclick="addDept()" type="button" class="btn" value="确认保存"/>
+    <input type="button" class="btn" value=" 返回 " onclick="history.back();">
+    </li>
     </ul>
     </form>
     </div>
