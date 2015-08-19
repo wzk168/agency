@@ -33,7 +33,6 @@
 		
 		if(bValid)
 		{
-			alert();
 			$.ajax({
 				type : "post",
 				url : "addInstitionCompany.html",
@@ -49,7 +48,6 @@
 				}
 			});
 		}
-		
 	}
 	//重新加载部门信息列表js
 	function beforInstit() {
@@ -58,7 +56,7 @@
 	</script>
 
 	<style>
-		label, input { display:block; }
+		label, input { display: inline; }
 		input.text { margin-bottom:12px; padding: .4em; }
 		 select { margin-bottom:12px; padding: .4em; }
 	</style>
@@ -72,14 +70,13 @@
 		</ul>
 	</div>
 
-  <div class="formbody">
 
 	<div class="formtitle">
 		<span>保险公司基本信息</span>
 	</div>
 	<form id="inscompanyfrom">
-	<div align="center">
-		<table width="86%" class="u-table">
+
+		<table width="86%" class="u-table" align="center">
 			<tbody>
 				<tr>
 					<th align="right">公司全称</th>
@@ -105,7 +102,7 @@
 							<option value="1">正常出单</option>
 							<option value="2">停止出单</option>
 					</select><i class="icgInscompanySituationspan"></i></td>
-					<th align="right">业务类型</th>
+					<th>业务类型</th>
 					<td><select id="icgInscompanyTypeId" name="icgInscompanyType" class="dfinput">
 							<option value="0">--请选择类型--</option>
 							<option value="1">综合业务</option>
@@ -174,8 +171,8 @@
 				</td></tr>
 			</tbody>
 		</table>
-		</div>
+	
 	</form>
-	</div>
+
 </body>
 </html>

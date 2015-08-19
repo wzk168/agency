@@ -1604,9 +1604,10 @@ h2 {
     text-align: center;
 }
 .u-table td i{
-	display: block;
-	float: none;
+	display: inline;
+	float:inherit;
     font-size: 10px;
+    
 }
 
 

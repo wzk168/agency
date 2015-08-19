@@ -29,21 +29,6 @@
 	src="${pageContext.request.contextPath}/resources/js/jqueryui/jquery.ui.dialog.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/form.validation.js"></script>
-<style>
-
-	body { font-size: 62.5%; }
-	
-		input.text { margin-bottom:12px; width:95%; padding: .4em; }
-		select { margin-bottom:12px; padding: .4em; }
-        fieldset { padding:0; border:0; margin-top:25px; }
-		h1 { font-size: 1.2em; margin: .6em 0; }
-		div#users-contain { width: 350px; margin: 20px 0; }
-		div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
-		div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
-		.ui-dialog .ui-state-error { padding: .3em; }
-		.validateTips { border: 1px solid transparent; padding: 0.3em; }
-</style>
-
 <body>
 	<div class="place">
 		<span>位置：</span>
@@ -66,11 +51,11 @@
 			<div id="tab1" class="tabson">
 				<div class="tools">
 					<ul class="toolbar">
-						<li class="adduydiv" id="creaInsur"><span><img
+						<li class="adduydiv" onclick="beforAddInstit()"><span><img
 								src="${pageContext.request.contextPath}/resources/images/t01.png" /></span>添加</li>
-						<li class="upclick" onclick="beforAddInstit()"><span><img
+						<li class="upclick" ><span><img
 								src="${pageContext.request.contextPath}/resources/images/t02.png"
-								onclick="beforUpUserCompany()" /></span>修改</li>
+								/></span>修改</li>
 						<li><label>&nbsp;&nbsp;公司简称:&nbsp;</label><input
 							id="ucsCompanyNameId" type="text" class="dfinput" /></li>
 						<li><label>&nbsp;&nbsp;出单情况:&nbsp;</label> <select
@@ -136,7 +121,11 @@
 	<script type="text/javascript">
 		$("#usual1 ul").idTabs();
 		$('.tablelist tbody tr:odd').addClass('odd');
-		
+		//进入添加
+		function beforAddInstit()
+		{
+			window.location.href = "beforAddInstition.html";
+		}
 	</script>
 </body>
 </html>
