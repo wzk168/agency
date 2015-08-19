@@ -33,7 +33,7 @@ public interface InstitutionService {
 	 * @param icgInscompanyType 业务类型
 	 * @return
 	 */
-	public List<InsuranceCompany> loadInsurCompany(String icgInscompanyShort,int icgInscompanyType);
+	public List<InsuranceCompany> loadInsurCompany(String icgInscompanyShort,int icgInscompanySituation);
 	
 	/**
 	 * 根据ID查询保险公司对象

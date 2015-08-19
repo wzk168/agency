@@ -1,5 +1,7 @@
 package com.agency.koda.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,10 +36,13 @@ public class InstitutionController extends BaseController
 	 * @return
 	 */
 	@RequestMapping(value = "/beforInstit", method = RequestMethod.GET)
-	public ModelAndView beforInstit()
+	public ModelAndView beforInstit(@RequestParam(value="icgInscompanyShort",required=false) String icgInscompanyShort,
+			@RequestParam("icgInscompanySituation") int icgInscompanySituation)
 	{
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("sys/institutionList");
+		List<InsuranceCompany> insurancelist=this.institService.loadInsurCompany(icgInscompanyShort, icgInscompanySituation);
+		mav.addObject("insurancelist",insurancelist);
 		return mav;
 	}
 	
@@ -66,6 +72,20 @@ public class InstitutionController extends BaseController
 		company.setIcgCompanyId(this.getUserFromSession(request).getUosCompanyId());//使用公司ID
 		result=this.institService.addInsurCompany(company);
 		this.writeMsg(response, result);
+	}
+	
+	@RequestMapping(value = "/beforSelInstitonEntity", method = RequestMethod.GET)
+	public ModelAndView beforSelInstitonEntity(@RequestParam("icgInscompanyId") String icgInscompanyId)
+	{
+		ModelAndView mav=new ModelAndView();
+		if(null!=icgInscompanyId && !icgInscompanyId.equals(""))
+		{
+			InsuranceCompany insurance=this.institService.loadInsurCompanyEntiy(icgInscompanyId);
+			mav.addObject("insurance",insurance);
+			mav.setViewName("sys/upInsurCompany");
+		}
+		return mav;
+		
 	}
 
 }

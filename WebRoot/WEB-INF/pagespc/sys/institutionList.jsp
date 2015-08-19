@@ -53,9 +53,8 @@
 					<ul class="toolbar">
 						<li class="adduydiv" onclick="beforAddInstit()"><span><img
 								src="${pageContext.request.contextPath}/resources/images/t01.png" /></span>添加</li>
-						<li class="upclick" ><span><img
-								src="${pageContext.request.contextPath}/resources/images/t02.png"
-								/></span>修改</li>
+						<li class="upclick" onclick="beforUpInstit()"><span><img
+								src="${pageContext.request.contextPath}/resources/images/t02.png" /></span>修改</li>
 						<li><label>&nbsp;&nbsp;公司简称:&nbsp;</label><input
 							id="ucsCompanyNameId" type="text" class="dfinput" /></li>
 						<li><label>&nbsp;&nbsp;出单情况:&nbsp;</label> <select
@@ -74,18 +73,28 @@
 					<thead>
 						<tr>
 							<th></th>
-							<th>添加</th>
-							<th>险种产品ID</th>
-							<th>险种产品名</th>
-							<th>添加</th>
+							<th>公司</th>
+							<th>保险公司</th>
+							<th>业务类型</th>
+							<th>出单情况</th>
+							<th>联系人</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${proclaslist}" var="proclas">
+						<c:forEach items="${insurancelist}" var="insur">
 							<tr>
-								<td>${proclas.pcgProdclassId}</td>
-								<td>${proclas.pcgProdclassName}</td>
-								<td><a href="#" class="tablelink">修改</a>
+								<td><input name="icgInscomp" id="icgInscomp" type="radio" 
+									value="${insur.icgInscompanyId}" /></td>
+								<td>${insur.icgCompanyId }</td>
+								<td>${insur.icgInscompanyShort }</td>
+								<td><c:if test="${insur.icgInscompanyType==1}">综合业务</c:if>
+									<c:if test="${insur.icgInscompanyType==2}">产线</c:if> <c:if
+										test="${insur.icgInscompanyType==3}">车险</c:if> <c:if
+										test="${insur.icgInscompanyType==4}">寿险</c:if></td>
+								<td><c:if test="${insur.icgInscompanySituation==1}">正常出单</c:if>
+									<c:if test="${insur.icgInscompanySituation==2}">停止出单</c:if></td>
+								<td>${insur.icgInscompanyMan }</td>
+							<tr>
 						</c:forEach>
 					</tbody>
 				</table>
@@ -125,6 +134,20 @@
 		function beforAddInstit()
 		{
 			window.location.href = "beforAddInstition.html";
+		}
+		
+		function beforUpInstit()
+		{
+			var val = $("input[name='icgInscomp']:checked").val();
+			
+			alert(val);
+		if(typeof(val)=='undefined')
+		{
+        	alert("请选择保险公司再点击修改按钮");
+        	return false;
+        }else{
+        	window.location.href = "beforSelInstitonEntity.html?icgInscompanyId="+val;
+         }
 		}
 	</script>
 </body>

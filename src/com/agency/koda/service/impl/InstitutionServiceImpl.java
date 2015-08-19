@@ -38,8 +38,8 @@ public class InstitutionServiceImpl implements InstitutionService
 	}
 	@Override
 	public List<InsuranceCompany> loadInsurCompany(String icgInscompanyShort,
-			int icgInscompanyType) {
-		return instdao.loadInsurCompany(icgInscompanyShort, icgInscompanyType);
+			int icgInscompanySituation) {
+		return instdao.loadInsurCompany(icgInscompanyShort, icgInscompanySituation);
 	}
 	@Override
 	public InsuranceCompany loadInsurCompanyEntiy(String icgInscompanyId) {

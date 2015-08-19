@@ -97,7 +97,7 @@ public class InsuranceCompany implements Serializable{
 	/**
 	 * 使用公司
 	 * icg_company_id
-	 */
+	 */            
 	private String icgCompanyId;
 
 	public String getIcgInscompanyId() {

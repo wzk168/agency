@@ -149,10 +149,10 @@ public class InstitutionDaoImpl extends BaseDaoImpl implements InstitutionDao
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public List<InsuranceCompany> loadInsurCompany(String icgInscompanyShort,
-			int icgInscompanyType) {
+			int icgInscompanySituation) {
 		List list=new ArrayList();
 		Object[] pares=null;
-		StringBuffer strbuf=new StringBuffer("SELECT icg_inscompany_short,icg_inscompany_situation,icg_inscompany_type,icg_inscompany_man FROM ay_insurance_company_msg WHERE 1=1");
+		StringBuffer strbuf=new StringBuffer("SELECT icg_inscompany_short,icg_inscompany_situation,icg_inscompany_type,icg_inscompany_man,icg_company_id,icg_inscompany_id FROM ay_insurance_company_msg WHERE 1=1");
 		//公司简称
 		if(null!=icgInscompanyShort && !icgInscompanyShort.equals(""))
 		{
@@ -160,10 +160,10 @@ public class InstitutionDaoImpl extends BaseDaoImpl implements InstitutionDao
 			list.add("%"+icgInscompanyShort+"%");
 		}
 		//业务类型
-		if(icgInscompanyType!=0)
+		if(icgInscompanySituation!=0)
 		{
-			strbuf.append(" AND icg_inscompany_type=?");
-			list.add(icgInscompanyType);
+			strbuf.append(" AND icg_inscompany_situation=?");
+			list.add(icgInscompanySituation);
 		}
 		pares=list.toArray();
 		try {
@@ -185,6 +185,8 @@ public class InstitutionDaoImpl extends BaseDaoImpl implements InstitutionDao
 			insuran.setIcgInscompanySituation(rs.getInt("icg_inscompany_situation"));
 			insuran.setIcgInscompanyType(rs.getInt("icg_inscompany_type"));
 			insuran.setIcgInscompanyMan(rs.getString("icg_inscompany_man"));
+			insuran.setIcgCompanyId(rs.getString("icg_company_id"));
+			insuran.setIcgInscompanyId(rs.getString("icg_inscompany_id"));
 			return insuran;
 		}
 
