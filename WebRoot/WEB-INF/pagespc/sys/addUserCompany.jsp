@@ -49,8 +49,8 @@ function reloaduy() {
     <div class="formtitle"><span>使用公司基本信息</span></div>
     <form id="addusercompany">
     <ul class="forminfo">
-    <li><label>公司名称</label><input name="ucsCompanyName" type="text" class="dfinput" /><i>标题不能超过30个字符</i></li>
-    <li><label>公司编号</label><input name="ucsCompanyNumber" type="text" class="dfinput" /><i>多个关键字用,隔开</i></li>
+    <li><label>公司名称</label><input name="ucsCompanyName" type="text" class="textinput" /><i>标题不能超过30个字符</i></li>
+    <li><label>公司编号</label><input name="ucsCompanyNumber" type="text" class="textinput" /><i>多个关键字用,隔开</i></li>
     <li><label>使用状态</label><cite><input name="ucsCompanyState" type="radio" value="1" checked="checked" />使用&nbsp;&nbsp;&nbsp;&nbsp;<input name="ucsCompanyState" type="radio" value="2" />停用</cite></li>
     <li><label>公司电话</label><input name="ucsCompanyPhone" type="text" class="dfinput" /></li>
     <li><label>公司联系人</label><input name="ucsCompanyLinkman" type="text" class="dfinput" /></li>

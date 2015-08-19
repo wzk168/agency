@@ -28,8 +28,8 @@
 			</ul>
 
 		</div>
-		<div class="rightinfo">
-			<table class="tablelist">
+		
+			<table class="tablelist" width="98%">
 				<thead>
 					<tr>
 						<th><input type="radio" value="" /></th>
@@ -63,7 +63,7 @@
 				</tbody>
 			</table>
 		</div>
-	</div>
+
 	<script type="text/javascript">
 		$('.tablelist tbody tr:odd').addClass('odd');
 		

@@ -968,15 +968,13 @@ h2 {
 }
 
 .dfinput {
-	width: 345px;
-	height: 32px;
-	line-height: 32px;
+	height: 30px;
 	border-top: solid 1px #a7b5bc;
 	border-left: solid 1px #a7b5bc;
 	border-right: solid 1px #ced9df;
 	border-bottom: solid 1px #ced9df;
 	background: url(../images/inputbg.gif) repeat-x;
-	text-indent: 10px;
+
 }
 
 .textinput {
@@ -986,8 +984,6 @@ h2 {
 	border-bottom: solid 1px #ced9df;
 	background: url(../images/inputbg.gif) repeat-x;
 	padding: 10px;
-	width: 504px;
-	height: 135px;
 	line-height: 20px;
 	overflow: hidden;
 }
@@ -1590,5 +1586,27 @@ h2 {
 	behavior: url(js/pie.htc);
 }
 
+/**table*/
+.u-table
+{
+	
+}
+.u-table th,
+.u-table td{
+    border: 1px solid #ebebeb;
+    height: 35px;
+
+}
+.u-table th{
+    background: #fafafa;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+}
+.u-table td i{
+	display: block;
+	float: none;
+    font-size: 10px;
+}
 
 

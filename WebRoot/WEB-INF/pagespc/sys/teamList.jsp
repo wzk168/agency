@@ -24,7 +24,7 @@
 		fieldset { padding:0; border:0; margin-top:25px; }
 		h1 { font-size: 1.2em; margin: .6em 0; }
 		.ui-dialog .ui-state-error { padding: .3em; }
-		.validateTips { border: 1px solid transparent; padding: 0.3em; }
+		.validateTips,.validateTips1 { border: 1px solid transparent; padding: 0.3em; }
 	</style>
 	
 <title>团队管理列表</title>
@@ -48,8 +48,8 @@
 			</ul>
 		</div>
 		
-		<div class="rightinfo">
-			<table class="tablelist">
+
+			<table class="tablelist" width="98%">
 				<thead>
 					<tr>
 						<th><input type="radio" value="" /></th>
@@ -81,7 +81,7 @@
 					</c:if>
 				</tbody>
 			</table>
-		</div>
+	
 	</div>
 	
 	
