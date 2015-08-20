@@ -12,7 +12,6 @@
 	src="${pageContext.request.contextPath}/resources/js/jquery.1.7.2.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery.idTabs.min.js"></script>
-
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/uicss/jquery.ui.core.css">
 <link rel="stylesheet"
@@ -29,7 +28,7 @@
 	src="${pageContext.request.contextPath}/resources/js/jqueryui/jquery.ui.dialog.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/form.validation.js"></script>
-<body>
+<body onload="onlaod()">
 	<div class="place">
 		<span>位置：</span>
 		<ul class="placeul">
@@ -41,12 +40,10 @@
 		<div id="usual1" class="usual">
 			<div class="itab">
 				<ul>
-					<li><a href="#tab1" class="selected">保险公司</a></li>
-					<li><a href="#tab2">保险公司分支机构</a></li>
+					<li><a href="#tab1" class="selected" id="insurtab">保险公司</a></li>
+					<li><a href="#tab2" id="branchtab">保险公司分支机构</a></li>
 				</ul>
 			</div>
-
-
 			<!-- 保险公司 -->
 			<div id="tab1" class="tabson">
 				<div class="tools">
@@ -55,59 +52,84 @@
 								src="${pageContext.request.contextPath}/resources/images/t01.png" /></span>添加</li>
 						<li class="upclick" ><span><img
 								src="${pageContext.request.contextPath}/resources/images/t02.png"
-								/></span>修改</li>
-						<li><label>&nbsp;&nbsp;公司简称:&nbsp;</label><input
-							id="ucsCompanyNameId" type="text" class="dfinput" /></li>
-						<li><label>&nbsp;&nbsp;出单情况:&nbsp;</label> <select
-							style="height: 28px;">
-								<option value="0">--请选择--</option>
-								<option value="1">正常出单</option>
-								<option value="2">停止出单</option>
-						</select></li>
-						<li><span><img
-								src="${pageContext.request.contextPath}/resources/images/ico06.png"
-								class="seluy" onclick="userCompanyList()" /></span></li>
+								onclick="beforUpInstit()"/></span>修改</li>
 					</ul>
-
 				</div>
 				<table class="tablelist" width="98%">
 					<thead>
 						<tr>
-							<th></th>
-							<th>添加</th>
-							<th>险种产品ID</th>
-							<th>险种产品名</th>
-							<th>添加</th>
+							<th>操作</th>
+							<th>公司</th>
+							<th>保险公司</th>
+							<th>联系人</th>
+							<th>业务类型</th>
+							<th>出单情况</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${proclaslist}" var="proclas">
+						<c:forEach items="${insurancelist}" var="insurance">
 							<tr>
-								<td>${proclas.pcgProdclassId}</td>
-								<td>${proclas.pcgProdclassName}</td>
-								<td><a href="#" class="tablelink">修改</a>
+							<td><input type="radio" name="icgInscompanyRido" value="${insurance.icgInscompanyId}"></td>
+							<td>${insurance.icgCompanyId}</td>
+							<td>${insurance.icgInscompanyShort}</td>
+							<td>${insurance.icgInscompanyMan}</td>
+							<td>
+							<c:if test="${insurance.icgInscompanyType==1}">综合业务</c:if>
+							<c:if test="${insurance.icgInscompanyType==2}">产险</c:if>
+							<c:if test="${insurance.icgInscompanyType==3}">车险</c:if>
+							<c:if test="${insurance.icgInscompanyType==4}">寿险</c:if>
+							</td>
+							<td>
+							<c:if test="${insurance.icgInscompanySituation==1}">正常出单</c:if>
+							<c:if test="${insurance.icgInscompanySituation==2}">停止出单</c:if>
+							</td>
+							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-
 			</div>
 			<!-- 保险公司分支机构 -->
 			<div id="tab2" class="tabson">
+			<div class="tools">
+					<ul class="toolbar">
+						<li class="adduydiv" onclick="beforAddBranch()"><span><img
+								src="${pageContext.request.contextPath}/resources/images/t01.png" /></span>添加</li>
+						<li class="upclick" onclick="beforUpBranch()"><span><img
+								src="${pageContext.request.contextPath}/resources/images/t02.png"
+								/></span>修改</li>
+					</ul>
+				</div>
 				<table class="tablelist">
 					<thead>
 						<tr>
-							<th>险种产品ID</th>
-							<th>险种产品名</th>
-							<th>操作 <img
-								src="${pageContext.request.contextPath}/resources/images/t01.png" /></th>
+							<th>操作</th>
+							<th>公司</th>
+							<th>上级公司</th>
+							<th>分支机构</th>
+							<th>联系人</th>
+							<th>业务类型</th>
+							<th>出单情况</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${proclaslist}" var="proclas">
+						<c:forEach items="${branchlist}" var="branch">
 							<tr>
-								<td>${proclas.pcgProdclassId}</td>
-								<td>${proclas.pcgProdclassName}</td>
-								<td><a href="#" class="tablelink">修改</a>
+							<td><input type="radio" name="bcgBranchIds" value="${branch.bcgBranchId}"></td>
+							<td>${branch.bcgCompanyId}</td>
+							<td>${branch.bcgInscompanyId}</td>
+							<td>${branch.bcgBranchShort}</td>
+							<td>${branch.bcgBranchMan}</td>
+							<td>
+							<c:if test="${branch.bcgBranchType==1}">综合业务</c:if>
+							<c:if test="${branch.bcgBranchType==2}">产险</c:if>
+							<c:if test="${branch.bcgBranchType==3}">车险</c:if>
+							<c:if test="${branch.bcgBranchType==4}">寿险</c:if>
+							</td>
+							<td>
+							<c:if test="${branch.bcgBranchSituation==1}">正常出单</c:if>
+							<c:if test="${branch.bcgBranchSituation==2}">停止出单</c:if>
+							</td>
+							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
@@ -121,11 +143,60 @@
 	<script type="text/javascript">
 		$("#usual1 ul").idTabs();
 		$('.tablelist tbody tr:odd').addClass('odd');
-		//进入添加
+	
+		//进入添加保险公司
 		function beforAddInstit()
 		{
 			window.location.href = "beforAddInstition.html";
 		}
-	</script>
+		//进图添加分支机构
+		function beforAddBranch()
+		{
+			window.location.href = "beforAddBranch.html";	
+		}
+		//进入修改保险公司
+		function beforUpInstit()
+		{
+			var val = $("input[name='icgInscompanyRido']:checked").val();
+			if(typeof(val)=='undefined'){
+            	alert("请选择公司再点击修改按钮");
+                    }else
+                    {
+			window.location.href = "beforUpdateInstition.html?icgInscompanyId="+val;
+                    }
+		}
+		//进入修改分支机构
+		function beforUpBranch()
+		{
+			var val = $("input[name='bcgBranchIds']:checked").val();
+			if(typeof(val)=='undefined'){
+            	alert("请选择分支机构再点击修改按钮");
+                    }else
+                    {
+			window.location.href = "beforUpBranch.html?bcgBranchId="+val;
+                    }
+		}
+		
+		function onlaod()
+		{
+			if(null!="${projectType}" && "${projectType}"!="")
+			{
+				if("${projectType}"=='branch')
+				{
+					$("#insurtab").removeClass("selected");
+					$("#branchtab").addClass("selected");
+					$("#tab1").hide();
+					$("#tab2").show();
+					
+				}else if("${projectType}"=='insuran')
+				{
+					$("#insurtab").addClass("selected");
+					$("#branchtab").removeClass("selected");
+					$("#tab2").hide();
+					$("#tab1").show();
+				}
+			}
+		}	
+		</script>
 </body>
 </html>

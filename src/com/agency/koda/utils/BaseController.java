@@ -2,16 +2,18 @@ package com.agency.koda.utils;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Random;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import ch.ethz.ssh2.Connection;
 import ch.ethz.ssh2.SCPClient;
-
+import com.agency.koda.model.BranchBaseClass;
+import com.agency.koda.model.InsuranceBaseClass;
 import com.agency.koda.model.UserInfo;
+import com.agency.koda.service.InstitutionService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -173,4 +175,16 @@ public class BaseController {
 		return param + timeMillis + num;
 	}
 
+
+
+	@Autowired
+	private InstitutionService institSer;
+	public List<InsuranceBaseClass> insuranList(String icgInscompanyId)
+	{
+		return institSer.loadInsuranList(icgInscompanyId);	
+	} 
+	public List<BranchBaseClass> branchList(String bcgCompanyId)
+	{
+		return institSer.loadBranchList(bcgCompanyId);
+	}
 }

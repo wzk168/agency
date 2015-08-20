@@ -11,15 +11,15 @@ function checkLength( o, n, min, max ,varname) {
 	var o = $( s );
 	if ( o.val().length > max || o.val().length < min ) {
 		o.addClass( "ui-state-error" );
-		updateTips(  n + " 字符长度在 " +
-			min + " 与 " + max + "之间" ,varname);
+		updateTips(  n + "字符在 " +
+			min + "到" + max + "之间" ,varname);
 			o.blur(function () 
               { 
 				if ( o.val().length > max || o.val().length < min )
 				{
 					o.addClass( "ui-state-error" );
-					updateTips(  n + " 字符长度在 " +
-						min + " 与 " + max + "之间" ,varname);
+					updateTips(  n + "字符在 " +
+						min + "到" + max + "之间" ,varname);
 					return false;
 				}else
 				{
@@ -43,13 +43,13 @@ function checkselect(o, n,varname)
 	var o = $( s );
 	if ( o.val()==0 || o.val()=="") {
 		o.addClass( "ui-state-error" );
-		updateTips(  n + "不能为空请选择" ,varname);
+		updateTips(  n + "不能为空" ,varname);
 			o.blur(function () 
               { 
 				if ( o.val()==0 || o.val()=="")
 				{
 					o.addClass( "ui-state-error" );
-					updateTips(  n + "不能为空请选择" ,varname);
+					updateTips(  n + "不能为空" ,varname);
 					return false;
 				}else
 				{
@@ -76,15 +76,15 @@ function checknull( o, n, min, max ,varname) {
 	{
 		if (o.val().length > max || o.val().length < min ) {
 			o.addClass( "ui-state-error" );
-			updateTips(  n + " 字符长度在 " +
-				min + " 与 " + max + "之间" ,varname);
+			updateTips(  n + "字符在 " +
+				min + "到" + max + "之间" ,varname);
 				o.blur(function () 
 	              { 
 					if ( o.val().length > max || o.val().length < min )
 					{
 						o.addClass( "ui-state-error" );
-						updateTips(  n + " 字符长度在 " +
-							min + " 与 " + max + "之间" ,varname);
+						updateTips(  n + "字符在" +
+							min + "到" + max + "之间" ,varname);
 						return false;
 					}else
 					{

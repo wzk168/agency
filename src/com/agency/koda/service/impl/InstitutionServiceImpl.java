@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.agency.koda.dao.InstitutionDao;
+import com.agency.koda.model.BranchBaseClass;
 import com.agency.koda.model.BranchCompany;
+import com.agency.koda.model.InsuranceBaseClass;
 import com.agency.koda.model.InsuranceCompany;
 import com.agency.koda.service.InstitutionService;
 /**
@@ -54,6 +56,14 @@ public class InstitutionServiceImpl implements InstitutionService
 		return instdao.updateInsuCompany(insuCompany);
 	}
 	
+	@Override
+	public List<BranchBaseClass> loadBranchList(String bcgCompanyId) {
+		return instdao.loadBranchList(bcgCompanyId);
+	}
+	@Override
+	public List<InsuranceBaseClass> loadInsuranList(String icgInscompanyId) {
+		return instdao.loadInsuranList(icgInscompanyId);
+	}
 	
 
 }

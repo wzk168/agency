@@ -2,7 +2,9 @@ package com.agency.koda.service;
 
 import java.util.List;
 
+import com.agency.koda.model.BranchBaseClass;
 import com.agency.koda.model.BranchCompany;
+import com.agency.koda.model.InsuranceBaseClass;
 import com.agency.koda.model.InsuranceCompany;
 
 /**
@@ -72,5 +74,16 @@ public interface InstitutionService {
 	 * @return
 	 */
 	public BranchCompany loadBranchCompanyEntity(String bcgBranchId);
+	
+	/**
+	 * 保险公司公共集合
+	 * @return
+	 */
+	public List<InsuranceBaseClass> loadInsuranList(String icgInscompanyId);
+	/**
+	 * 分支机构公共集合
+	 * @return
+	 */
+	public List<BranchBaseClass> loadBranchList(String bcgCompanyId);
 
 }

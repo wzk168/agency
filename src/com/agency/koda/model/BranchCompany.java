@@ -49,6 +49,11 @@ public class BranchCompany implements Serializable
       * bcg_branch_phone
       */
      private String bcgBranchPhone;
+     
+     /**
+      * bcg_branch_fax
+      */
+     private String bcgBranchFax;
 	
      /**
       * 公司邮箱
@@ -176,6 +181,14 @@ public class BranchCompany implements Serializable
 
 	public void setBcgInscompanyId(String bcgInscompanyId) {
 		this.bcgInscompanyId = bcgInscompanyId;
+	}
+
+	public String getBcgBranchFax() {
+		return bcgBranchFax;
+	}
+
+	public void setBcgBranchFax(String bcgBranchFax) {
+		this.bcgBranchFax = bcgBranchFax;
 	}
      
      
