@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ch.ethz.ssh2.Connection;
 import ch.ethz.ssh2.SCPClient;
 import com.agency.koda.model.BranchBaseClass;
+import com.agency.koda.model.DeptBaseClass;
 import com.agency.koda.model.InsuranceBaseClass;
 import com.agency.koda.model.UserInfo;
+import com.agency.koda.service.DeptInfoService;
 import com.agency.koda.service.InstitutionService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -178,13 +180,20 @@ public class BaseController {
 
 
 	@Autowired
-	private InstitutionService institSer;
+	private InstitutionService institSer;//保险公司，分支机构
 	public List<InsuranceBaseClass> insuranList(String icgInscompanyId)
 	{
-		return institSer.loadInsuranList(icgInscompanyId);	
+		return institSer.loadInsuranList(icgInscompanyId);	//保险公司集合
 	} 
 	public List<BranchBaseClass> branchList(String bcgCompanyId)
 	{
-		return institSer.loadBranchList(bcgCompanyId);
+		return institSer.loadBranchList(bcgCompanyId);//分支机构集合
 	}
+	@Autowired
+	private DeptInfoService deptSer;//部门
+	public List<DeptBaseClass> deptlist()
+	{
+		return deptSer.loadDeptBase();//部门集合
+	}
+	
 }

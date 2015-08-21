@@ -58,7 +58,7 @@
 						<th>团队名</th>
 						<th>负责人</th>
 						<th>团队类型</th>
-						
+						<th>团队状态</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -75,6 +75,10 @@
 							<c:if test="${team.tsTeamType==1 }">直接渠道</c:if>
 							<c:if test="${team.tsTeamType==2 }">渠道业务</c:if>
 							<c:if test="${team.tsTeamType==3 }">特殊渠道业务</c:if>
+								</td>
+								<td>
+							<c:if test="${team.tsTeamState==1 }">正常出单</c:if>
+							<c:if test="${team.tsTeamState==2 }">停止出单</c:if>
 								</td>
 							</tr>
 						</c:forEach>
@@ -107,6 +111,13 @@
 		<option value="2">渠道业务</option>
 		<option value="3">特殊渠道业务</option>
 		</select>
+		<label>团队状态</label>
+			<select name="tsTeamState" id="tsTeamState" class="text ui-widget-content ui-corner-all">
+		<option value="1">正常出单</option>
+		<option value="2">停止出单</option>
+	
+		</select>
+		
 	</fieldset>
 	</form>
 </div>
@@ -133,6 +144,11 @@
 		<option value="2">渠道业务</option>
 		<option value="3">特殊渠道业务</option>
 		</select>
+		<label>团队状态</label>
+			<select name="tsTeamState" id="tsTeamStateId" class="text ui-widget-content ui-corner-all">
+		<option value="1">正常出单</option>
+		<option value="2">停止出单</option>
+		</select>
 		<input type="hidden" name="tsCompanyId" id="tsCompanyIdId">
 		<input type="hidden" name="tsTeamId" id="tsTeamIdId">
 	</fieldset>
@@ -152,7 +168,7 @@
 			//以下是添加团队层
 			$( "#dialog-form" ).dialog({
 				autoOpen: false,
-				height: 410,
+				height: 450,
 				width: 350,
 				modal: true,
 				buttons: {
@@ -163,6 +179,8 @@
 							bValid = bValid && checkselect( "tsDeptId", "部门名称","validateTips");
 							bValid = bValid && checkLength( "tsTeamPrincipal", "负责人", 3, 16,"validateTips");
 							bValid = bValid && checkselect( "tsTeamType", "团队类型","validateTips");
+							bValid = bValid && checkselect( "tsTeamState", "团队状态","validateTips");
+							
 					    if(bValid)
 					    {
 					    	
@@ -199,7 +217,7 @@
                     
 			$( "#dialog-form1" ).dialog({
 				autoOpen: false,
-				height: 410,
+				height: 450,
 				width: 350,
 				modal: true,
 				buttons: {
@@ -210,6 +228,7 @@
 							bValid = bValid && checkselect( "tsDeptIdId", "部门名称","validateTips1");
 							bValid = bValid && checkLength( "tsTeamPrincipalId", "负责人", 3, 16,"validateTips1");
 							bValid = bValid && checkselect( "tsTeamTypeId", "团队类型","validateTips1");
+							bValid = bValid && checkselect( "tsTeamStateId", "团队类型","validateTips1");
 					    if(bValid)
 					    {
 					    	$.ajax({
@@ -255,6 +274,8 @@
 									$("#tsTeamTypeId").val(data.tsTeamType);
 									$("#tsCompanyIdId").val(data.tsCompanyId);
 									$("#tsTeamIdId").val(data.tsTeamId);
+									$("#tsTeamStateId").val(data.tsTeamState);
+									
 									$( "#dialog-form1" ).dialog( "open" );
 									}
 								},

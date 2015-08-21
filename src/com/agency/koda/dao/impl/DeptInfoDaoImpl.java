@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.agency.koda.dao.DeptInfoDao;
+import com.agency.koda.model.DeptBaseClass;
 import com.agency.koda.model.DeptInfo;
 import com.agency.koda.utils.BaseDaoImpl;
 
@@ -134,6 +135,33 @@ public class DeptInfoDaoImpl extends BaseDaoImpl implements DeptInfoDao {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	//公共方法部门提起
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DeptBaseClass> loadDeptBase() {
+		String selDeptEntitySql = "SELECT ds_dept_id,ds_dept_name FROM ay_deptinfo_sys WHERE ds_dept_type=1";
+		try {
+			List<DeptBaseClass> deptlist=this.getJdbcTemplate().query(selDeptEntitySql,new DeptSet());
+			return (null!=deptlist&&deptlist.size()>0?deptlist:null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+	@SuppressWarnings("rawtypes")
+	public class DeptSet implements RowMapper
+	{
+		@Override
+		public Object mapRow(ResultSet rs, int index) throws SQLException {
+			DeptBaseClass dept=new DeptBaseClass();
+			dept.setDeptId(rs.getString("ds_dept_id"));
+			dept.setDeptName(rs.getString("ds_dept_name"));
+			return dept;
+		}
+
 	}
 
 }

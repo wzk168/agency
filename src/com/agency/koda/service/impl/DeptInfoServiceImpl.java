@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.agency.koda.dao.DeptInfoDao;
+import com.agency.koda.model.DeptBaseClass;
 import com.agency.koda.model.DeptInfo;
 import com.agency.koda.service.DeptInfoService;
 /**
@@ -37,5 +38,10 @@ public class DeptInfoServiceImpl implements DeptInfoService
 	@Override
 	public DeptInfo loadDeptEntity(String dsDeptId) {
 		return deptDao.loadDeptEntity(dsDeptId);
+	}
+	//公共方法
+	@Override
+	public List<DeptBaseClass> loadDeptBase() {
+		return deptDao.loadDeptBase();
 	}
 }

@@ -3,6 +3,7 @@ package com.agency.koda.service;
 import java.util.List;
 
 import com.agency.koda.model.Employee;
+import com.agency.koda.model.EmployeeBaseClass;
 
 /**
  * 员工service实现
@@ -43,7 +44,7 @@ public interface EmployeeService {
 	 * @param esDeptId 归属部门
 	 * @return
 	 */
-    public List<Employee> loadEmployeeList(int pageNow,int pageSize,String esEmplName,String esDeptId);
+    public List<EmployeeBaseClass> loadEmployeeList(int pageNow,int pageSize,String esEmplName,String esDeptId);
 
     /**
 	 * 查询员工对象

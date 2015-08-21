@@ -45,6 +45,11 @@ public class TeamInfo implements Serializable
 	 */
 	private String tsCompanyId;
 
+	/**
+	 * 团队状态
+	 * ts_team_state
+	 */
+	private int tsTeamState;
 	public String getTsTeamId() {
 		return tsTeamId;
 	}
@@ -91,6 +96,13 @@ public class TeamInfo implements Serializable
 
 	public void setTsCompanyId(String tsCompanyId) {
 		this.tsCompanyId = tsCompanyId;
+	}
+
+	public int getTsTeamState() {
+		return tsTeamState;
+	}
+	public void setTsTeamState(int tsTeamState) {
+		this.tsTeamState = tsTeamState;
 	}
 
 

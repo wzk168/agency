@@ -13,7 +13,6 @@
 //添加使用公司提交
 function adduy() {
 	
-
 	$.ajax({
 		type : "post",
 		url : "addUserCompany.html",

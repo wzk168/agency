@@ -2,6 +2,7 @@ package com.agency.koda.service;
 
 import java.util.List;
 
+import com.agency.koda.model.TeamBaseClass;
 import com.agency.koda.model.TeamInfo;
 
 /**
@@ -43,7 +44,12 @@ public interface TeamInfoService {
 	public TeamInfo loadTeamEntity(String tsTeamId);
 	
 	
-	
+	/**
+	 * 根据部门ID查询t团队信息	
+	 * @param tsDeptId 根据部门ID查询团队
+	 * @return
+	 */
+	public List<TeamBaseClass> loadTeamByDeptId(String tsDeptId);
 	
 	
 }

@@ -2,6 +2,8 @@ package com.agency.koda.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * 员工实体类
  * @author meng
@@ -50,6 +52,7 @@ public class Employee implements Serializable
 	 * 出生日期
 	 * es_empl_birthdate
 	 */
+	@DateTimeFormat(pattern="yyyy-MM-dd")  
 	private Date esEmplBirthdate;
 
 	/**
@@ -68,6 +71,7 @@ public class Employee implements Serializable
 	 * 入职时间
 	 * es_empl_hiredate
 	 */
+	@DateTimeFormat(pattern="yyyy-MM-dd") 
 	private Date esEmplHireEate;
 	/**
 	 * 职位
@@ -120,6 +124,7 @@ public class Employee implements Serializable
 	 * 离职时间
 	 * es_empl_dimissiondate
 	 */
+	@DateTimeFormat(pattern="yyyy-MM-dd") 
 	private Date esEmplDimissionDate;
 	
 	/**
@@ -129,10 +134,23 @@ public class Employee implements Serializable
 	private String esEmplRemark;
 	
 	/**
-	 * 员工ID
+	 *使用公司
 	 * es_company_id
 	 */
 	private String esCompanyId;
+	
+	
+	/**
+	 * es_placedo_micile
+	 * 户籍地址
+	 */
+	private String esPlacedoMicile;
+	
+	/**
+	 * es_actual_residence
+	 * 现住
+	 */
+	private String esActualResidence;
 
 	public String getEsEmplId() {
 		return esEmplId;
@@ -300,6 +318,22 @@ public class Employee implements Serializable
 
 	public void setEsCompanyId(String esCompanyId) {
 		this.esCompanyId = esCompanyId;
+	}
+
+	public String getEsPlacedoMicile() {
+		return esPlacedoMicile;
+	}
+
+	public void setEsPlacedoMicile(String esPlacedoMicile) {
+		this.esPlacedoMicile = esPlacedoMicile;
+	}
+
+	public String getEsActualResidence() {
+		return esActualResidence;
+	}
+
+	public void setEsActualResidence(String esActualResidence) {
+		this.esActualResidence = esActualResidence;
 	}
 	
 }

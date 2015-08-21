@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.agency.koda.dao.TeamInfoDao;
+import com.agency.koda.model.TeamBaseClass;
 import com.agency.koda.model.TeamInfo;
 import com.agency.koda.service.TeamInfoService;
 /**
@@ -39,7 +40,11 @@ public class TeamInfoServiceImpl implements TeamInfoService
 	public TeamInfo loadTeamEntity(String tsTeamId) {
 		return teamDao.loadTeamEntity(tsTeamId);
 	}
-	
+	//根据部门ID查询t团队信息	
+	@Override
+	public List<TeamBaseClass> loadTeamByDeptId(String tsDeptId) {
+		return teamDao.loadTeamByDeptId(tsDeptId);
+	}
 	
 	
 	

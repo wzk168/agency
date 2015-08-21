@@ -2,6 +2,7 @@ package com.agency.koda.dao;
 
 import java.util.List;
 
+import com.agency.koda.model.DeptBaseClass;
 import com.agency.koda.model.DeptInfo;
 
 /**
@@ -38,4 +39,9 @@ public interface DeptInfoDao
 	 */
 	public DeptInfo loadDeptEntity(String dsDeptId);
 
+	/**
+	 * 公共方法提取部门，部门ID
+	 * @return
+	 */
+	public List<DeptBaseClass> loadDeptBase();
 }

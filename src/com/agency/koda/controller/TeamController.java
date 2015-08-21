@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.agency.koda.model.DeptInfo;
+import com.agency.koda.model.TeamBaseClass;
 import com.agency.koda.model.TeamInfo;
 import com.agency.koda.service.DeptInfoService;
 import com.agency.koda.service.TeamInfoService;
@@ -98,6 +100,16 @@ public class TeamController extends BaseController
 		this.writeMsg(response, team);
 	}
 	
-	
+	//根据部门ID查询该部门下的所有团队
+	@RequestMapping(value="/teamListByDeptId",method=RequestMethod.POST)
+	@ResponseBody
+	public void teamListByDeptId(@RequestParam("tsDeptId") String tsDeptId,HttpServletResponse response)
+	{
+		List<TeamBaseClass> teamlist=this.teamService.loadTeamByDeptId(tsDeptId);
+		JSONObject json = new JSONObject();
+		json.put("teamlist", teamlist);
+		this.writeMsg(response, json.toString());
+		
+	}
 
 }
