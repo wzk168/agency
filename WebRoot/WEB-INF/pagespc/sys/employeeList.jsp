@@ -9,10 +9,6 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery.1.7.2.min.js"></script>
 <title>员工信息管理</title>
-<script type="text/javascript">
-
-
-</script>
 </head>
 <body>
 	<div class="place">
@@ -30,10 +26,18 @@
 				<li class="upclick"><span><img
 						src="${pageContext.request.contextPath}/resources/images/t02.png" onclick="beforUpUserCompany()"/></span>修改</li>
 				<li><label>&nbsp;&nbsp;员工姓名:&nbsp;</label><input
-					id="ucsCompanyNameId" type="text" class="dfinput" /></li>
+					id="esEmplNameId" type="text" class="dfinput" /></li>
+						<li><label>&nbsp;&nbsp;归属部门:&nbsp;</label>
+						<select class="dfinput" id="esEmpDeptId">
+						<option value="">--请选择部门--</option>
+						<c:forEach items="${deptlist}" var="dept">
+						<option value="${dept.deptId}">${dept.deptName}</option>
+						</c:forEach>
+						</select>
+						</li>
 				<li><span><img
 						src="${pageContext.request.contextPath}/resources/images/ico06.png"
-						class="seluy" onclick="userCompanyList()"/></span></li>
+						class="seluy" onclick="turnPage(1)"/></span></li>
 			</ul>
 
 		</div>
@@ -53,9 +57,51 @@
 					</tr>
 				</thead>
 				<tbody>
+					<c:forEach items="${emplist}" var="emp">
+					<tr>
+					<td>${emp.empId}</td>
+					<td>${emp.empCompanyName}</td>
+					<td>${emp.empName}</td>
+					<td>${emp.empDeptName}</td>
+					<td>${emp.empTeamName}</td>
+					<td>${emp.empTheTime}</td>
+					<td>${emp.empTheJob}</td>
+					<td>${emp.empSalesMan}</td>
+					</tr>
+					</c:forEach>
 					
 				</tbody>
 			</table>
+			
+				<div class="pagin">
+			<div class="message">
+				共<i class="blue">${page.totalSize}</i>条记录，总页数${page.totalPage}页,
+				当前显示第&nbsp;<i class="blue">${page.pageNow}&nbsp;</i>页
+			</div>
+			<ul class="paginList">
+				<li class="paginItem"><c:choose>
+						<c:when test="${page.hasPre}">
+							<a href="javascript:;" onclick="turnPage('${page.pageNow-1}')"><span
+								class="pagepreblue"></span></a>
+						</c:when>
+						<c:otherwise>
+							<a href="javascript:;"><span class="pagepre"
+								onclick="turnPage(1)"></span></a>
+						</c:otherwise>
+					</c:choose></li>
+				<li class="paginItem"><a href="javascript:;"
+					onclick="turnPage(1)">首页</a></li>
+				<li class="paginItem"><a href="javascript:;"
+					onclick="turnPage(${page.totalPage})">尾页</a></li>
+				<li class="paginItem"><c:if test="${!page.hasNext}">
+						<a href="javascript:;" onclick="turnPage('${page.pageNow}')"><span
+							class="pagenxt"></span></a>
+					</c:if> <c:if test="${page.hasNext}">
+						<a href="javascript:;"><span class="pagenxtblue"
+							onclick="turnPage('${page.pageNow+1}')"></span></a>
+					</c:if></li>
+			</ul>
+		</div>
 		</div>
 	</div>
 	<script type="text/javascript">
@@ -65,6 +111,12 @@
 		function beforAddEmployee()
 		{
 				window.location.href = "beforAddEmployee.html";	
+		}
+		//分页
+		function turnPage(op) 
+		{
+		   window.location.href="beforLoadEmployeeList.html?pageNow="
+				   +op+"&esEmplName="+$("#esEmplNameId").val()+"&esDeptId="+$("#esEmpDeptId").val();
 		}
 	</script>
 </body>

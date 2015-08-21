@@ -81,13 +81,13 @@ public class EmployeeDaoImpl extends BaseDaoImpl implements EmployeeDao
 		List list=new ArrayList();
 		Object[] obj=null;
 		StringBuffer strbuffer=new StringBuffer();
-		strbuffer.append("SELECT us.ucs_company_name,dept.ds_dept_abbreviation,team.ts_team_name,emp.es_empl_name,emp.es_empl_job,emp.es_empl_salesman,emp.es_empl_hiredate"+
+		strbuffer.append("SELECT emp.es_empl_id,us.ucs_company_name,dept.ds_dept_abbreviation,team.ts_team_name,emp.es_empl_name,emp.es_empl_job,emp.es_empl_salesman,emp.es_empl_hiredate"+
 "  FROM ay_employee_msg AS emp LEFT JOIN ay_deptinfo_sys AS dept ON emp.es_dept_id=dept.ds_dept_id LEFT JOIN ay_teaminfo_msg AS team ON"+
 " emp.es_team_id=team.ts_team_id LEFT JOIN ay_user_company_sys AS us ON emp.es_company_id=us.ucs_company_id WHERE 1=1 ");
 		//部门
 		if(null!=esDeptId && !esDeptId.equals(""))
 		{
-			strbuffer.append(" AND dept.ds_dept_abbreviation=?");
+			strbuffer.append(" AND dept.ds_dept_id=?");
 			list.add(esDeptId);
 		}
 		//员工姓名
@@ -118,7 +118,7 @@ public class EmployeeDaoImpl extends BaseDaoImpl implements EmployeeDao
 			EmployeeBaseClass empclass=new EmployeeBaseClass();
 			empclass.setEmpCompanyName(rs.getString("ucs_company_name"));
 			empclass.setEmpDeptName(rs.getString("ds_dept_abbreviation"));
-			empclass.setEmpId(rs.getString("es_empl_name"));
+			empclass.setEmpId(rs.getString("es_empl_id"));
 			
 			if(rs.getInt("es_empl_salesman")==1)
 			{
@@ -134,8 +134,7 @@ public class EmployeeDaoImpl extends BaseDaoImpl implements EmployeeDao
 			{
 				empclass.setEmpTheJob("离职");
 			}
-			
-			
+			empclass.setEmpName(rs.getString("es_empl_name"));
 			empclass.setEmpTheTime(rs.getDate("es_empl_hiredate"));
 			return empclass;
 		}
@@ -153,7 +152,7 @@ public class EmployeeDaoImpl extends BaseDaoImpl implements EmployeeDao
 		//部门
 		if(null!=esDeptId && !esDeptId.equals(""))
 		{
-			strbuffer.append(" AND dept.ds_dept_abbreviation=?");
+			strbuffer.append(" AND dept.ds_dept_id=?");
 			list.add(esDeptId);
 		}
 		//员工姓名

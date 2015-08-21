@@ -44,8 +44,10 @@ public class EmployeeController extends BaseController
 		mav.setViewName("sys/employeeList");
 		Page page=new Page(pageNow, pageSize, this.empService.loadEmployeeCount(esEmplName, esDeptId));
 		List<EmployeeBaseClass> emplist=this.empService.loadEmployeeList(pageNow, pageSize, esEmplName, esDeptId);
+		List<DeptBaseClass> deptlist=this.deptlist();
 		mav.addObject("page", page);
 		mav.addObject("emplist", emplist);
+		mav.addObject("deptlist", deptlist);
 		return mav;
 	}
 	

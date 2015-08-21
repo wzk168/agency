@@ -8,6 +8,7 @@ import java.util.Date;
  * @author meng
  *
  */
+@SuppressWarnings("serial")
 public class EmployeeBaseClass implements Serializable{
 	
 	/**
