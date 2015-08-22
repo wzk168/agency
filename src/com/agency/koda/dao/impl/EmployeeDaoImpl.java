@@ -2,6 +2,7 @@ package com.agency.koda.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -172,7 +173,54 @@ public class EmployeeDaoImpl extends BaseDaoImpl implements EmployeeDao
 	//查询员工对象
 	@Override
 	public Employee loadEmployeeEntity(String esEmplId) {
-		// TODO Auto-generated method stub
+		String selSql="SELECT es_empl_id,es_empl_name,es_dept_id,es_team_id,es_empl_sex,"
+				+ "es_empl_card,es_empl_birthdate,es_empl_marry,es_empl_education,"
+				+ "es_empl_hiredate,es_empl_position,es_empl_phone,es_empl_job,"
+				+ "es_empl_salesman,es_empl_emergency,es_empl_emergencyphone,"+
+				"es_empl_professionname,es_empl_professioncard,es_empl_dimissiondate,"+
+				"es_empl_remark,es_company_id,es_placedo_micile,es_actual_residence FROM ay_employee_msg WHERE es_empl_id=?";
+		try {
+			
+			List<Employee> emplist=this.getJdbcTemplate().query(selSql, new Object[]{esEmplId},new int[]{Types.VARCHAR},new RowMapper<Employee>() {
+				@Override
+				public Employee mapRow(ResultSet rs, int index)
+						throws SQLException {
+					Employee emp=new Employee();
+					emp.setEsActualResidence(rs.getString("es_actual_residence"));
+					emp.setEsCompanyId(rs.getString("es_company_id"));
+					emp.setEsDeptId(rs.getString("es_dept_id"));
+					emp.setEsEmplBirthdate(rs.getDate("es_empl_birthdate"));
+					emp.setEsEmplCard(rs.getString("es_empl_card"));
+					emp.setEsEmplDimissionDate(rs.getDate("es_empl_dimissiondate"));
+					emp.setEsEmplEducation(rs.getInt("es_empl_education"));
+					emp.setEsEmplEmergency(rs.getString("es_empl_emergency"));
+					emp.setEsEmplEmergencyPhone(rs.getString("es_empl_emergencyphone"));
+					emp.setEsEmplHireEate(rs.getDate("es_empl_hiredate"));
+					emp.setEsEmplId(rs.getString("es_empl_id"));
+					emp.setEsEmplJob(rs.getInt("es_empl_job"));
+					emp.setEsEmplMarry(rs.getInt("es_empl_marry"));
+					emp.setEsEmplName(rs.getString("es_empl_name"));
+					emp.setEsEmplPhone(rs.getString("es_empl_phone"));
+					emp.setEsEmplPosition(rs.getInt("es_empl_position"));
+					emp.setEsEmplProfessionCard(rs.getString("es_empl_professioncard"));
+					emp.setEsEmplProfessionName(rs.getString("es_empl_professionname"));
+					emp.setEsEmplRemark(rs.getString("es_empl_remark"));
+					emp.setEsEmplSalesman(rs.getInt("es_empl_salesman"));
+					emp.setEsEmplSex(rs.getInt("es_empl_sex"));
+					emp.setEsPlacedoMicile(rs.getString("es_placedo_micile"));
+					emp.setEsTeamId(rs.getString("es_team_id"));
+					return emp;
+				}
+			});
+			
+			if(null!=emplist && emplist.size()>0)
+			{
+				return emplist.get(0);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 

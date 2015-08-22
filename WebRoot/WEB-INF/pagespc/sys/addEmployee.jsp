@@ -18,7 +18,7 @@
 <script type="text/javascript">
 	//添加分支机构js
 	function addEmp() {
-		var bValid = true;/*
+		var bValid = true;
 		bValid = bValid && checkLength( "esEmplNameId", "员工姓名", 3, 25,"esEmplNamespan");
 		bValid = bValid && checkLength( "esEmplCardId", "身份证号码", 3, 20,"esEmplCardspan");
 		bValid = bValid && checkselect( "esDeptIdId", "归属部门","esDeptIdspan");
@@ -34,7 +34,7 @@
 		bValid = bValid && checknull( "esPlacedoMicileId", "户籍地址",1,100,"esPlacedoMicilespan");
 		bValid = bValid && checknull( "esActualResidenceId", "现住地",1,100,"esActualResidencespan");
 		bValid = bValid && checknull( "esEmplRemarkId", "备注信息",1,200,"esEmplRemarkspan");
-		*/
+		
 		
 		if(bValid)
 		{
@@ -59,23 +59,9 @@
 	function beforemp() {
 		window.location.href = "beforLoadEmployeeList.html";
 	}
-	function f()
-	{$.ajax({
-		type : "post",
-		url : "addEmployee.html",
-		data : $("#addempfrom").serialize(),
-		dataType : "text",
-		success : function(data) {
-			if (data > 0) {
-				reloaduy();
-			}
-		},
-		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert(errorThrown);
-		}
-	});
-	}
+	
 
+	
 	</script>
 
 	<style>

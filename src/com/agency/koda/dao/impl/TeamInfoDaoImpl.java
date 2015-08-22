@@ -139,7 +139,7 @@ public class TeamInfoDaoImpl extends BaseDaoImpl implements TeamInfoDao {
 
 		return null;
 	}
-	//根据部门ID查询团队信息
+	//根据部门ID查询在出单状态中的团队信息
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<TeamBaseClass> loadTeamByDeptId(String tsDeptId) {
@@ -160,7 +160,7 @@ public class TeamInfoDaoImpl extends BaseDaoImpl implements TeamInfoDao {
 		public Object mapRow(ResultSet rs, int index) throws SQLException {
 			TeamBaseClass team=new TeamBaseClass();
 			team.setTeamId(rs.getString("ts_team_id"));
-			team.setTeanName(rs.getString("ts_team_name"));
+			team.setTeamName(rs.getString("ts_team_name"));
 			return team;
 		}
 	}

@@ -23,7 +23,7 @@
 			<ul class="toolbar">
 				<li class="adduydiv" onclick="beforAddEmployee()"><span><img
 						src="${pageContext.request.contextPath}/resources/images/t01.png" onclick="beforaddUserCompany()"/></span>添加</li>
-				<li class="upclick"><span><img
+				<li class="upclick" onclick="beforUpEmp()"><span><img
 						src="${pageContext.request.contextPath}/resources/images/t02.png" onclick="beforUpUserCompany()"/></span>修改</li>
 				<li><label>&nbsp;&nbsp;员工姓名:&nbsp;</label><input
 					id="esEmplNameId" type="text" class="dfinput" /></li>
@@ -59,7 +59,9 @@
 				<tbody>
 					<c:forEach items="${emplist}" var="emp">
 					<tr>
-					<td>${emp.empId}</td>
+					<td>
+					<input type="radio" value="${emp.empId}" name="empId">
+					</td>
 					<td>${emp.empCompanyName}</td>
 					<td>${emp.empName}</td>
 					<td>${emp.empDeptName}</td>
@@ -118,6 +120,18 @@
 		   window.location.href="beforLoadEmployeeList.html?pageNow="
 				   +op+"&esEmplName="+$("#esEmplNameId").val()+"&esDeptId="+$("#esEmpDeptId").val();
 		}
+		
+		//进入修改员工界面
+		function beforUpEmp() {
+			var val = $("input[name='empId']:checked").val();
+			if(typeof(val)=='undefined'){
+            	alert("请选择员工再点击修改按钮");
+                    }else
+                    {
+                    	window.location.href = "loadEmployeeEntity.html?empId="+val;
+                    }
+		}
+		
 	</script>
 </body>
 </html>

@@ -17,7 +17,7 @@ public class TeamBaseClass implements Serializable
 	/**
 	 * 团队姓名
 	 */
-	private String teanName;
+	private String teamName;
 
 	public String getTeamId() {
 		return teamId;
@@ -27,12 +27,14 @@ public class TeamBaseClass implements Serializable
 		this.teamId = teamId;
 	}
 
-	public String getTeanName() {
-		return teanName;
+	public String getTeamName() {
+		return teamName;
 	}
 
-	public void setTeanName(String teanName) {
-		this.teanName = teanName;
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
 	}
+
+
 
 }
