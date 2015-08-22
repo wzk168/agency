@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>部门管理列表</title>
+<title>单证入库</title>
 </head>
 <link href="${pageContext.request.contextPath}/resources/css/style.css"
 	rel="stylesheet" type="text/css" />
@@ -37,23 +37,23 @@
 <div class="place">
 		<span>位置：</span>
 		<ul class="placeul">
-			<li><a href="#">组织机构</a></li>
-			<li><a href="#">添加部门信息</a></li>
+			<li><a href="#">单证管理</a></li>
+			<li><a href="#">单证入库</a></li>
 		</ul>
 	</div>
 	
 	<div class="formbody">
-    <div class="formtitle"><span>使用公司基本信息</span></div>
+    <div class="formtitle"><span>单证入库</span></div>
     <form id="adddeptfrom">
     <ul class="forminfo">
-    <li><label>部门全称</label><input name="dsDeptName" type="text" class="dfinput" size="40"/></li>
-    <li><label>部门简称</label><input name="dsDeptAbbreviation" type="text" class="dfinput" size="40"/></li>
-    <li><label>负责人</label><input name="dsDeptPrincipal" type="text" class="dfinput"size="40"/></li>
+    <li><label>部门全称</label><input name="dsDeptName" id="1" type="text" class="dfinput" /></li>
+    <li><label>部门简称</label><input name="dsDeptAbbreviation" id="2" type="text" class="dfinput" /></li>
+    <li><label>负责人</label><input name="dsDeptPrincipal" type="text" class="dfinput"/></li>
     <li><label>业务类型</label><cite><input name="dsDeptType" type="radio" value="1" checked="checked" />管理部&nbsp;&nbsp;&nbsp;&nbsp;<input name="ucsCompanyState" type="radio" value="2" />业务部</cite></li>
-    <li><label>联系电话1</label><input name="dsDeptOnephone" type="text" class="dfinput" size="40"/></li>
-    <li><label>联系电话2</label><input name="dsDeptTwophone" type="text" class="dfinput" size="40"/></li>
-    <li><label>电子邮箱</label><input name="dsDeptEmail" type="text" class="dfinput" size="40"/></li>
-   <li><label>地址</label><input name="dsDeptAddress" type="text" class="dfinput" size="40"/></li>
+    <li><label>联系电话1</label><input name="dsDeptOnephone" type="text" class="dfinput" /></li>
+    <li><label>联系电话2</label><input name="dsDeptTwophone" type="text" class="dfinput" /></li>
+    <li><label>电子邮箱</label><input name="dsDeptEmail" type="text" class="dfinput" /></li>
+   <li><label>地址</label><input name="dsDeptAddress" type="text" class="dfinput" /></li>
     <li><label>&nbsp;</label>
     <input name="" onclick="addDept()" type="button" class="btn" value="确认保存"/>
     <input type="button" class="btn" value=" 返回 " onclick="history.back();">
@@ -62,6 +62,13 @@
     </form>
     </div>
 	
-	
+<script>
+//两个文本框信息同步
+var o_1 = document.getElementById("1");
+var o_2 = document.getElementById("2");
+o_1.onkeyup = function(){
+        o_2.value = o_1.value
+}
+</script>
 </body>
 </html>

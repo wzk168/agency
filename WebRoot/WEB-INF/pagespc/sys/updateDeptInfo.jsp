@@ -46,14 +46,14 @@
     <div class="formtitle"><span>修改部门基本信息</span></div>
     <form id="updeptfrom">
     <ul class="forminfo">
-    <li><label>部门全称</label><input name="dsDeptName" value="${dept.dsDeptName}" type="text" class="dfinput" /></li>
-    <li><label>部门简称</label><input name="dsDeptAbbreviation" value="${dept.dsDeptAbbreviation}" type="text" class="dfinput" /></li>
-    <li><label>负责人</label><input name="dsDeptPrincipal" value="${dept.dsDeptPrincipal}" type="text" class="dfinput"/></li>
+    <li><label>部门全称</label><input name="dsDeptName" value="${dept.dsDeptName}" type="text" class="dfinput" size="40"/></li>
+    <li><label>部门简称</label><input name="dsDeptAbbreviation" value="${dept.dsDeptAbbreviation}" type="text" class="dfinput" size="40"/></li>
+    <li><label>负责人</label><input name="dsDeptPrincipal" value="${dept.dsDeptPrincipal}" type="text" class="dfinput" size="40"/></li>
     <li><label>业务类型</label><cite><input name="dsDeptType" type="radio" value="1" <c:if test="${dept.dsDeptType==1}">checked="checked"</c:if> />管理部&nbsp;&nbsp;&nbsp;&nbsp;<input name="ucsCompanyState" type="radio" value="2" <c:if test="${dept.dsDeptType==2}">checked="checked"</c:if>  />业务部</cite></li>
-    <li><label>联系电话1</label><input name="dsDeptOnephone" value="${dept.dsDeptOnephone}" type="text" class="dfinput" /></li>
-    <li><label>联系电话2</label><input name="dsDeptTwophone" value="${dept.dsDeptTwophone}" type="text" class="dfinput" /></li>
-    <li><label>电子邮箱</label><input name="dsDeptEmail" value="${dept.dsDeptEmail}" type="text" class="dfinput" /></li>
-   <li><label>地址</label><input name="dsDeptAddress" value="${dept.dsDeptAddress}" type="text" class="dfinput" /></li>
+    <li><label>联系电话1</label><input name="dsDeptOnephone" value="${dept.dsDeptOnephone}" type="text" class="dfinput" size="40"/></li>
+    <li><label>联系电话2</label><input name="dsDeptTwophone" value="${dept.dsDeptTwophone}" type="text" class="dfinput" size="40"/></li>
+    <li><label>电子邮箱</label><input name="dsDeptEmail" value="${dept.dsDeptEmail}" type="text" class="dfinput" size="40"/></li>
+   <li><label>地址</label><input name="dsDeptAddress" value="${dept.dsDeptAddress}" type="text" class="dfinput" size="40"/></li>
     <li><label>&nbsp;</label>
     <input type="hidden" value="${dept.dsDeptId}" name="dsDeptId">
     <input type="hidden" value="${dept.dsCompanyId}" name="dsCompanyId">
