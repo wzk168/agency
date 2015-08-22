@@ -2,7 +2,6 @@ package com.agency.koda.model;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -11,7 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 
 @SuppressWarnings("serial")
-public class Document implements Serializable
+public class DocumentInfo implements Serializable
 {
 	
 	/**
@@ -36,7 +35,7 @@ public class Document implements Serializable
 	 * 单证类型
 	 * dg_document_type
 	 */
-	private String dgDocumentType;
+	private int dgDocumentType;
 	
 	/**
 	 * 单证状态
@@ -119,11 +118,11 @@ public class Document implements Serializable
 		this.dgBranchId = dgBranchId;
 	}
 
-	public String getDgDocumentType() {
+	public int getDgDocumentType() {
 		return dgDocumentType;
 	}
 
-	public void setDgDocumentType(String dgDocumentType) {
+	public void setDgDocumentType(int dgDocumentType) {
 		this.dgDocumentType = dgDocumentType;
 	}
 

@@ -352,7 +352,7 @@ public class InstitutionDaoImpl extends BaseDaoImpl implements InstitutionDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BranchBaseClass> loadBranchList(String bcgCompanyId) {
-		String selSql = "	SELECT bcg_branch_id,bcg_branch_short FROM"
+		String selSql = "SELECT bcg_branch_id,bcg_branch_short FROM"
 				+ " ay_branch_company_msg WHERE bcg_branch_situation=1 AND bcg_company_id=?";
 		try {
 			List<BranchBaseClass> branchlist = this.getJdbcTemplate().query(

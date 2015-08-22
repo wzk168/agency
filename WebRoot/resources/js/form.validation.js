@@ -106,3 +106,107 @@ function checknull( o, n, min, max ,varname) {
 	
 }
 
+//判断文本框只能输入数字字母
+function checknum(o, n, min, max ,varname) 
+{ 
+	var s='#'+o;
+	var o = $( s );
+var re=/^[A-Za-z0-9]*$/; 
+
+if(re.test(o.val())==false){ 
+	//不全是数字或者字母的进入该模块
+	o.addClass( "ui-state-error" );
+	updateTips(  n +"只能输入数字或字母" ,varname);
+	o.blur(function () 
+              { 
+		if(re.test(o.val())==false)
+		{
+			o.addClass( "ui-state-error" );
+			updateTips(  n +"只能输入数字或字母" ,varname);
+			return false;
+		}else{
+				if ( o.val().length > max || o.val().length < min )
+				{
+					o.addClass( "ui-state-error" );
+					updateTips(  n + "字符在 " +
+						min + "到" + max + "之间" ,varname);
+					return false;
+				}else
+				{
+					var tss='.'+varname;
+					tipss = $( tss );
+					o.removeClass("ui-state-error");
+					tipss.text("").removeClass("ui-state-highlight");
+					return true;
+				}
+		}
+           });
+	
+return false;
+} else { 
+	if ( o.val().length > max || o.val().length < min ) {
+		o.addClass( "ui-state-error" );
+		updateTips(  n + "字符在 " +
+			min + "到" + max + "之间" ,varname);
+			o.blur(function () 
+              { 
+				if ( o.val().length > max || o.val().length < min )
+				{
+					o.addClass( "ui-state-error" );
+					updateTips(  n + "字符在 " +
+						min + "到" + max + "之间" ,varname);
+					return false;
+				}else
+				{
+					var tss='.'+varname;
+					tipss = $( tss );
+					o.removeClass("ui-state-error");
+					tipss.text("").removeClass("ui-state-highlight");
+					return true;
+				}
+           });
+		return false;
+	} else {
+		return true;
+	}
+return true;
+} 
+} 
+
+
+
+//判断只能输入正整数
+function checkOnlyNum(o, n ,varname)
+{
+	alert();
+	var s='#'+o;
+   var o = $( s );
+   var res=/^[0-9]*[1-9][0-9]*$/;
+   if(res.test(o.val())==false )
+   {
+	   alert();
+	   o.addClass( "ui-state-error" );
+		updateTips(  n +"只能输入大于0的数字" ,varname);
+		o.blur(function () 
+	              { 
+			  if(res.test(o.val())==false)
+			  {
+				   o.addClass( "ui-state-error" );
+					updateTips(  n +"只能输入大于0的数字," ,varname); 
+			  }else
+			  {
+				  var tss='.'+varname;
+					tipss = $( tss );
+					o.removeClass("ui-state-error");
+					tipss.text("").removeClass("ui-state-highlight");
+					return true;
+			  }	
+	           });
+		return false;
+   }else
+   {
+	  
+     return true;
+   }
+}
+
