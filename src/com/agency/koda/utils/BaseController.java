@@ -2,14 +2,21 @@ package com.agency.koda.utils;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import ch.ethz.ssh2.Connection;
 import ch.ethz.ssh2.SCPClient;
+
 import com.agency.koda.model.BranchBaseClass;
 import com.agency.koda.model.DeptBaseClass;
 import com.agency.koda.model.InsuranceBaseClass;
@@ -176,9 +183,36 @@ public class BaseController {
 		String timeMillis = String.valueOf(System.currentTimeMillis());
 		return param + timeMillis + num;
 	}
+	/**
+	 * 6位随机数
+	 * @param varStr
+	 * @return
+	 */
 
+	public String suijishu(String varStr) {
 
+		// 产生四位数的随机数
+		boolean bool[] = new boolean[999999];
+		Random rand = new Random();
+		int num = 0;
 
+		do { // 如果产生的数相同继续循环
+			num = rand.nextInt(999999);
+		} while (bool[num]);
+		
+		return varStr+num;
+	}
+
+	/** 
+	 * 获得一个UUID 
+	 * @return String UUID 
+	 */ 
+	public static String getUUID(String str){ 
+	    String s = UUID.randomUUID().toString(); 
+	    //去掉“-”符号 
+	    return s.replace("-","").toUpperCase(); 
+	} 
+	
 	@Autowired
 	private InstitutionService institSer;//保险公司，分支机构
 	public List<InsuranceBaseClass> insuranList(String icgInscompanyId)

@@ -1,9 +1,7 @@
 package com.agency.koda.service.impl;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.agency.koda.dao.DocumentDao;
 import com.agency.koda.model.DocumentInfo;
 import com.agency.koda.service.DocumentService;
@@ -12,6 +10,7 @@ import com.agency.koda.service.DocumentService;
  * @author meng
  *
  */
+
 @Service
 public class DocumentServiceImpl implements DocumentService 
 {
@@ -21,7 +20,7 @@ public class DocumentServiceImpl implements DocumentService
 	//添加单证信息
 	@Override
 	public int addDocumentInfo(List<DocumentInfo> documlist) {
-		
+	
 		return documdao.addDocumentInfo(documlist);
 	}
 

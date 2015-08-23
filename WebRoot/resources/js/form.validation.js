@@ -178,13 +178,11 @@ return true;
 //判断只能输入正整数
 function checkOnlyNum(o, n ,varname)
 {
-	alert();
 	var s='#'+o;
    var o = $( s );
    var res=/^[0-9]*[1-9][0-9]*$/;
    if(res.test(o.val())==false )
    {
-	   alert();
 	   o.addClass( "ui-state-error" );
 		updateTips(  n +"只能输入大于0的数字" ,varname);
 		o.blur(function () 
@@ -205,8 +203,42 @@ function checkOnlyNum(o, n ,varname)
 		return false;
    }else
    {
-	  
      return true;
    }
 }
 
+
+
+
+
+
+//判断两数之差
+function checkpoor(o,num, n ,varname)
+{
+	var s='#'+o;
+	   var o = $( s );
+ if(num>0 && num<100)
+ {
+	 return true;
+ }else
+ {
+	  o.addClass( "ui-state-error" );
+		updateTips(  n +"每次入库在100份以内" ,varname);
+		o.blur(function () 
+	              { 
+			  if(num>0 && num<100)
+			  {
+				   o.addClass( "ui-state-error" );
+					updateTips(  n +"每次入库在100份以内," ,varname); 
+			  }else
+			  {
+				  var tss='.'+varname;
+					tipss = $( tss );
+					o.removeClass("ui-state-error");
+					tipss.text("").removeClass("ui-state-highlight");
+					return true;
+			  }	
+	           });
+		return false;
+ }
+}

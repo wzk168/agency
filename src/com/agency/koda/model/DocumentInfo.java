@@ -2,6 +2,7 @@ package com.agency.koda.model;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -12,7 +13,38 @@ import org.springframework.format.annotation.DateTimeFormat;
 @SuppressWarnings("serial")
 public class DocumentInfo implements Serializable
 {
+	//1入库2出库3领用4回销5结余6	丢失;
+	/**
+	 * 入库
+	 */
+	public static final int enter=1;
 	
+	/**
+	 * 出库
+	 */
+	public static final int put=2;
+	
+	/**
+	 * 领用
+	 */
+	@SuppressWarnings("unused")
+	private static final int employ=3;
+	/**
+	 * 回销
+	 */
+	public static final int resold=4;	
+    
+    /**
+     * 结余
+     */
+	public static final int surplus=5;
+    
+    /**
+     * 丢失
+     */
+	public static final int lose=6;
+    
+    
 	/**
 	 * dg_document_id
 	 * 单证ID
@@ -93,6 +125,19 @@ public class DocumentInfo implements Serializable
 	 * dg_company_id
 	 */
 	private String dgCompanyId;
+	
+	/**
+	 * 操作人
+	 * dg_document_operation
+	 */
+	private String dgDocumentOperation;
+	
+	//**********以下字段不在数据库字段中**********
+	private String serial;
+	private int seria2;
+	private int seria3;
+	
+	
 
 	public String getDgDocumentId() {
 		return dgDocumentId;
@@ -197,5 +242,41 @@ public class DocumentInfo implements Serializable
 	public void setDgCompanyId(String dgCompanyId) {
 		this.dgCompanyId = dgCompanyId;
 	}
+
+	
+	public String getDgDocumentOperation() {
+		return dgDocumentOperation;
+	}
+
+	public void setDgDocumentOperation(String dgDocumentOperation) {
+		this.dgDocumentOperation = dgDocumentOperation;
+	}
+
+	public void setSeria2(int seria2) {
+		this.seria2 = seria2;
+	}
+
+	public void setSeria3(int seria3) {
+		this.seria3 = seria3;
+	}
+
+	public String getSerial() {
+		return serial;
+	}
+
+	public void setSerial(String serial) {
+		this.serial = serial;
+	}
+
+	public int getSeria2() {
+		return seria2;
+	}
+
+	public int getSeria3() {
+		return seria3;
+	}
+
+	
+	
 	
 }

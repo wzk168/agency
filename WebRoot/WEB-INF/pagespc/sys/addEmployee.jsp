@@ -45,7 +45,6 @@
 				dataType : "text",
 				success : function(data) {
 					if (data > 0) {
-						alert(2);
 						beforemp();
 					}
 				},

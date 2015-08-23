@@ -24,16 +24,20 @@
 		bValid = bValid && checkOnlyNum("dgDocumentSerial11", "起始编号2","dgDocumentSerial11span");
 		bValid = bValid && checkOnlyNum("dgDocumentSerial22", "截止编号2","dgDocumentSerial22span");
 		
+		var difference=$("#dgDocumentSerial22").val()-$("#dgDocumentSerial11").val();
+		bValid = bValid && checkpoor("dgDocumentSerial22",difference,"单证","dgDocumentSerial22span");
+		
+		
 		bValid = bValid && checknull("bcgBranchRemarkId", "备注",0,200,"bcgBranchRemarkspan");
 		if(bValid){
 			$.ajax({
 				type : "post",
-				url : "addDeptInfo.html",
+				url : "addDocumentInfo.html",
 				data : $("#adddocumfrom").serialize(),
 				dataType : "text",
 				success : function(data) {
 					if (data > 0) {
-						relodept();
+						alert();
 					}
 				},
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
@@ -81,11 +85,11 @@
     </select>
     <i class="dgDocumentTypespan"></i>
     </li>
-    <li><label>起始编号</label><input name="dgDocumentSerial1" size="21" id="dgDocumentSerial1" type="text" class="dfinput" />
-    <input size="10" type="text" name="dgDocumentSerial11" id="dgDocumentSerial11" class="dfinput" />
+    <li><label>起始编号</label><input name="serial" size="21" id="dgDocumentSerial1" type="text" class="dfinput" />
+    <input size="10" type="text" name="seria2" id="dgDocumentSerial11" class="dfinput" />
     <i class="dgDocumentSerial11span"></i></li>
     <li><label>截止编号</label><input name="dgDocumentSerial2" readonly="readonly"  size="21" id="dgDocumentSerial2" type="text" class="dfinput" />
-    <input  size="10" name="dgDocumentSerial22" id="dgDocumentSerial22" type="text" class="dfinput" />
+    <input  size="10" name="seria3" id="dgDocumentSerial22" type="text" class="dfinput" />
     <i class="dgDocumentSerial22span"></i></li>
    <li><label>备注</label>
    <textarea rows="5" cols="45" class="textinput" name="dgDocumentRemark" id="dgDocumentRemarkId"></textarea>
