@@ -136,7 +136,10 @@ public class DocumentInfo implements Serializable
 	private String serial;
 	private int seria2;
 	private int seria3;
-	
+	/**
+	 * 分支机构名称
+	 */
+	private String branchName;
 	
 
 	public String getDgDocumentId() {
@@ -274,6 +277,14 @@ public class DocumentInfo implements Serializable
 
 	public int getSeria3() {
 		return seria3;
+	}
+
+	public String getBranchName() {
+		return branchName;
+	}
+
+	public void setBranchName(String branchName) {
+		this.branchName = branchName;
 	}
 
 	

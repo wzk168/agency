@@ -1,9 +1,12 @@
 package com.agency.koda.utils;
+
 import javax.annotation.Resource;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
+
 /**
  * 数据层公共类
  * @author Waco
@@ -37,5 +40,7 @@ public class BaseDaoImpl {
 	public PlatformTransactionManager getPm() {
 		return pm;
 	}
+
+	
 
 }

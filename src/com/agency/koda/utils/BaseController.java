@@ -210,7 +210,7 @@ public class BaseController {
 	public static String getUUID(String str){ 
 	    String s = UUID.randomUUID().toString(); 
 	    //去掉“-”符号 
-	    return s.replace("-","").toUpperCase(); 
+	    return str+s.replace("-","").toUpperCase(); 
 	} 
 	
 	@Autowired
