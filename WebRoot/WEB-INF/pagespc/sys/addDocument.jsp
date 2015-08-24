@@ -15,7 +15,7 @@
 	<script type="text/javascript">
 	
 	
-	//添加部门js
+	//添加单证js
 	function addDocument() {
 		var bValid = true;
 		bValid = bValid && checkselect("dgBranchIdId", "分支机构","dgBranchIdIdspan");
@@ -48,7 +48,7 @@
 		}
 		
 	}
-	//重新加载部门信息列表js
+	//重新加载单证信息列表js
 	function relodept() {
 		window.location.href = "loadDeptInfoList.html";
 	}
@@ -109,11 +109,11 @@
 var o_1 = document.getElementById("dgDocumentSerial1");
 var o_2 = document.getElementById("dgDocumentSerial2");
 o_1.onkeyup = function(){
-        o_2.value = o_1.value
-}
+        o_2.value = o_1.value;
+};
 o_2.onkeyup = function(){
-    o_1.value = o_2.value
-}
+    o_1.value = o_2.value;
+};
 </script>
 </body>
 </html>

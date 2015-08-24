@@ -109,12 +109,8 @@
 				url : "loadDocumentPage.html",
 				data : "pageNow=1",
 				dataType : "json",
-				//async : false,
+				async : false,
 				success : function(data) {
-				    var obj = eval('(' + data.page.pageNow + ')');
-					
-					alert(obj);
-				alert(data.page.pageNow);
 					loadList(data);
 				},
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
