@@ -147,15 +147,12 @@ public class DocumentController extends BaseController {
 		Object resultPage = JSON.parse(JSON.toJSONString(page));
 		JSONArray json = new JSONArray();
 		for (int i = 0; i < doculist.size(); i++) {
-			Object info=JSON.parse(JSON.toJSONString(doculist.get(i)));
+			Object info = JSON.parse(JSON.toJSONString(doculist.get(i)));
 			json.add(info);
-			
 		}
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("doculist", json);
 		jsonObject.put("page", resultPage);
-		
-		System.out.println(jsonObject);
 		this.writeMsg(response, jsonObject);
 	}
 
