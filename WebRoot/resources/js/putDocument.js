@@ -1,3 +1,7 @@
+$(function(){
+	$('.tablelist tbody tr:odd').addClass('odd');
+	selDocument();
+});
 function selDocument() {
 	$("#contextObj tr").remove();// 先清空数据然后在添加
 
