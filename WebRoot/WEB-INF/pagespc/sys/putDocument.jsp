@@ -13,7 +13,7 @@
 	
 <title>员工信息管理</title>
 </head>
-<body onload="selDocument()">
+<body >
 	<div class="place">
 		<span>位置：</span>
 		<ul class="placeul">
@@ -101,11 +101,5 @@
 		</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-		$('.tablelist tbody tr:odd').addClass('odd');
-		
-		
-	
-	</script>
 </body>
 </html>
