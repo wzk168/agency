@@ -3,12 +3,13 @@ package com.agency.koda.controller;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +23,10 @@ import com.agency.koda.model.DocumentInfo;
 import com.agency.koda.model.UserInfo;
 import com.agency.koda.service.DocumentService;
 import com.agency.koda.utils.BaseController;
-import com.agency.koda.utils.JsonUtil;
 import com.agency.koda.utils.Page;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * 单证控制层实现
@@ -142,17 +145,20 @@ public class DocumentController extends BaseController {
 		List<DocumentInfo> doculist = this.documService.loadDocmentPage(date1,
 				date2, dgBranchId, dgDocumentType, page.getPageNow(),
 				page.getPageSize());
+
+		Object resultPage = JSON.parse(JSON.toJSONString(page));
+		JSONArray json = new JSONArray();
+		for (int i = 0; i < doculist.size(); i++) {
+			Object info=JSON.parse(JSON.toJSONString(doculist.get(i)));
+			json.add(info);
+			
+		}
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("doculist", json);
+		jsonObject.put("page", resultPage);
 		
-		//String s=JsonUtil.listToJson(doculist);
-		
-		 
-		String pageStr = JsonUtil.objectToJson(page);
-		JSONObject json = new JSONObject();
-		
-		json.put("doculist", doculist);
-		json.put("page", pageStr);
-		System.out.println(json.toString());
-		this.writeMsg(response, json.toString());
+		System.out.println(jsonObject);
+		this.writeMsg(response, jsonObject);
 	}
 
 }
